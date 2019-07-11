@@ -21,8 +21,8 @@ import kotlinx.coroutines.*
 import log
 import timber.log.Timber
 
-
 class MainActivity : AppCompatActivity() {
+
 
 
     var test: Float = 3.12345f
