@@ -77,7 +77,18 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.0.7'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation(name: 'librarya-debug',ext:'aar')
+    implementation(name: 'lib_b-release',ext:'aar')
+
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+//    implementation project(path: ':librarya')
 //    implementation 'com.jakewharton:butterknife:8.8.1'
 //    kapt "com.jakewharton:butterknife-compiler:8.8.1"
 
+}
+
+repositories {
+    flatDir{
+        dirs 'libs-aar'
+    }
 }

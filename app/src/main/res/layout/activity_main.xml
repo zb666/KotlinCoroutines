@@ -8,52 +8,78 @@
     tools:context=".MainActivity">
 
 
-
-
     <LinearLayout
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_height="30dp">
+        android:gravity="center_horizontal">
+
         <TextView
             android:id="@+id/tvOne"
-            android:text="111"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="动植物出现" />
+
         <TextView
             android:id="@+id/tv222"
-            android:text="tv222"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="树循环" />
 
         <TextView
             android:id="@+id/tv333"
-            android:text="333"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="333" />
+
+        <TextView
+            android:id="@+id/tv444"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="金币" />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv555"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="树出现+循环" />
+
     </LinearLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/la_entry"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/entry" />
-<!--energy_bar_effect2-->
+        android:layout_height="300dp"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/energy_bar_effect2" />
+
+    <!--energy_bar_effect2-->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/la_entry_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         app:lottie_autoPlay="true"
-        app:lottie_imageAssetsFolder="img_0"
+        app:lottie_progress="0"
         app:lottie_rawRes="@raw/entry" />
 
 
@@ -65,18 +91,18 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lt_slide"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:lottie_loop="true"
+        android:layout_height="400dp"
         app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         app:lottie_rawRes="@raw/energy_bar_effect2" />
-<!--@raw/energy_bar_effect2-->
+
+    <!--@raw/energy_bar_effect2-->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
         android:layout_weight="1"
+        android:scaleType="centerCrop"
         app:lottie_fileName="energy_entry.json"
         app:lottie_imageAssetsFolder="images/energy_entry"
         app:lottie_loop="true" />
