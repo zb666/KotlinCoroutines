@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     var test: Float = 3.12345f
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
