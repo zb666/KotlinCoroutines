@@ -19,10 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.coroutines.*
 import log
-import org.json.JSONObject
-import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
-import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() {
 
