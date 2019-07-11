@@ -23,8 +23,6 @@ import org.json.JSONObject
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.math.BigDecimal
-import java.util.concurrent.SynchronousQueue
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
