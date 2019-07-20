@@ -1,5 +1,6 @@
 package com.example.bod.kotlincoroutines.utils
 
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -10,3 +11,8 @@ val now = {
 }
 
 fun log(msg: Any?) = println("${now()} [${Thread.currentThread().name}] $msg")
+
+
+fun printLog(info:String){
+    Timber.d("[%s]: $info",Thread.currentThread().name)
+}
