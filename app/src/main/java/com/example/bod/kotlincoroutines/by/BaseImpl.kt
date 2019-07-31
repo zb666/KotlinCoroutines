@@ -10,6 +10,9 @@ import android.util.Log
  */
 class BaseImpl(var name:String):IBase{
     override fun print() {
+
+
+
        Log.d("Bob","$name")
     }
 }
