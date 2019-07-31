@@ -8,11 +8,9 @@ import android.util.Log
  * @Description:
  * @CreateDate: 2019/7/31
  */
-class BaseImpl(var name:String):IBase{
+class BaseImpl(var name: String) : IBase {
     override fun print() {
-
-
-
-       Log.d("Bob","$name")
+//bug fix
+        Log.d("Bob", "$name")
     }
 }
