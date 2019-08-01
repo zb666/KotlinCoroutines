@@ -15,10 +15,6 @@
         jumpToStart/End 跳转到开始或者结束
         -->
 
-        <!--<OnSwipe-->
-            <!--app:clickAction="toggle"-->
-            <!--app:targetId="@id/tvAsync" />-->
-
         <OnClick app:clickAction="transitionToEnd"
             app:targetId="@id/tvAsync"/>
 
