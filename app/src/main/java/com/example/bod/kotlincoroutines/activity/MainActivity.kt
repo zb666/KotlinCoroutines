@@ -1,9 +1,16 @@
 package com.example.bod.kotlincoroutines.activity
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.media.MediaPlayer
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.net.toUri
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
+import androidx.core.view.setPadding
 import com.example.bod.kotlincoroutines.LogUtils
 import com.example.bod.kotlincoroutines.Name
 import com.example.bod.kotlincoroutines.R
@@ -24,13 +31,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//       mapOf("1" to 2,"2" to 3)
-
-
         listOf("1","2","3","4","5").withIndex().forEach {
             Log.d("Bob", "$it.index "+it.value)
         }
-
 
         val kProperty1 = User::name
         val kFunction1 = User::test
@@ -52,8 +55,25 @@ class MainActivity : BaseActivity() {
         var example = Example()
         val str = example.str
 
+        preKtx()
+        
     }
 
+
+    @SuppressLint("SetTextI18n")
+    fun preKtx(){
+        val context = this as Context
+
+        "".toUri()
+
+        tvSync.doOnPreDraw {
+            tvSync.text = "{$it.height}"
+        }
+
+
+
+
+    }
 
     fun testAction(action:(String)->Int):Int{
         return action("1")
