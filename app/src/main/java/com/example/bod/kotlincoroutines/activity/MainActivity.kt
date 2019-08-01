@@ -2,6 +2,7 @@ package com.example.bod.kotlincoroutines.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity() {
         val str = example.str
 
         preKtx()
-        
+
     }
 
 
@@ -66,10 +67,13 @@ class MainActivity : BaseActivity() {
 
         "".toUri()
 
-        tvSync.doOnPreDraw {
-            tvSync.text = "{$it.height}"
-        }
+//        tvSync.doOnPreDraw {
+//            tvSync.text = "{$it.height}"
+//        }
 
+        tvSync.setOnClickListener {
+            startActivity(Intent(it.context,MotionActivity::class.java))
+        }
 
 
 

@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvSync"
         style="@style/style_common_tv"
-        android:text="tvSync"
+        android:text="ViewModel专项测试"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
