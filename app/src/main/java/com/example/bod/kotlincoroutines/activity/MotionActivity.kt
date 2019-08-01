@@ -57,6 +57,10 @@ class MotionActivity : AppCompatActivity() {
             pageLiveData?.observe(this, Observer<PagedList<DateBean>> {
                 it.config
             })
+
+//            convertViewModel.refreshData()
+
+
         }
 
         //这是一个函数对象

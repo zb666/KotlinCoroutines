@@ -25,4 +25,8 @@ class ConvertFactory private constructor(): DataSource.Factory<Int, DateBean>() 
         mSourceLiveDataSource.postValue(convertDataSource)
         return convertDataSource
     }
+
+    fun refreshData(name:ConvertDataSource){
+        mSourceLiveDataSource.postValue(name)
+    }
 }
