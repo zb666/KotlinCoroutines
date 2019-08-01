@@ -7,9 +7,20 @@
         app:constraintSetEnd="@layout/activity_main_scene_end"
         app:duration="1500">
 
-        <OnClick
-            app:clickAction="toggle"
-            app:targetId="@id/tvAsync" />
+        <!--
+
+        start - > end
+        toggle 循环切换
+        transitionToStart/End 过渡到开始或者结束
+        jumpToStart/End 跳转到开始或者结束
+        -->
+
+        <!--<OnSwipe-->
+            <!--app:clickAction="toggle"-->
+            <!--app:targetId="@id/tvAsync" />-->
+
+        <OnClick app:clickAction="transitionToEnd"
+            app:targetId="@id/tvAsync"/>
 
     </Transition>
 
