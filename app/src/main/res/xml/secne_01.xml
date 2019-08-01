@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetStart="@layout/activity_main_scene_start"
+        app:constraintSetEnd="@layout/activity_main_scene_end"
+        app:duration="1500">
+
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@id/tvAsync" />
+
+    </Transition>
+
+</MotionScene>
