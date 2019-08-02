@@ -2,6 +2,7 @@ package com.example.bod.kotlincoroutines.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -12,6 +13,7 @@ import com.example.bod.kotlincoroutines.jetpack.DateBean
 import com.example.bod.kotlincoroutines.jetpack.MyLocationListener
 import com.example.bod.kotlincoroutines.jetpack.paging.ConvertViewModel
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
+import com.example.bod.kotlincoroutines.utils.TestUtils
 import com.example.bod.kotlincoroutines.viewmodel.MyViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main_scene_start.*
@@ -44,6 +46,12 @@ class MotionActivity : AppCompatActivity() {
             convertAdapter.setTestData {
                 DateBean(it.toLong(),name = "name: $it")
             }
+        }
+
+       TestUtils.startPrint("")
+
+        convertAdapter.setOnItemChildClickListener { adapter, view, position ->
+            TestUtils.startPrint("")
         }
 
         myViewMode.getData().observe(this,Observer<DateBean> {

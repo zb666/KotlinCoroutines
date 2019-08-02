@@ -21,6 +21,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MotionActivity" />
+
+        <provider
+            android:multiprocess="true"
+            android:authorities="${applicationId}.cp"
+            android:name=".InitContentProvider"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

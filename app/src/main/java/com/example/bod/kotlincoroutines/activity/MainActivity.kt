@@ -12,6 +12,7 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.core.view.setPadding
+import com.blankj.utilcode.util.ScreenUtils
 import com.example.bod.kotlincoroutines.LogUtils
 import com.example.bod.kotlincoroutines.Name
 import com.example.bod.kotlincoroutines.R
@@ -20,6 +21,7 @@ import com.example.bod.kotlincoroutines.by.BaseImpl
 import com.example.bod.kotlincoroutines.by.Derived
 import com.example.bod.kotlincoroutines.by.Example
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
+import com.example.bod.kotlincoroutines.utils.TestUtils
 import com.example.bod.kotlincoroutines.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.async
@@ -78,6 +80,7 @@ class MainActivity : BaseActivity() {
 
         tvSync.setOnClickListener {
             startActivity(Intent(it.context,MotionActivity::class.java))
+
         }
 
 
@@ -135,6 +138,7 @@ class MainActivity : BaseActivity() {
         val flatten = listOf(listOf("1"), listOf("22"), listOf("3")).flatten()
         Log.d("Bob",flatten.toString())
 
+        ScreenUtils.getAppScreenHeight()
 
     }
 

@@ -63,5 +63,7 @@ dependencies {
 
     //BRH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
+    //AndroidUtil
+    implementation 'com.blankj:utilcodex:1.25.2'
 
 }
