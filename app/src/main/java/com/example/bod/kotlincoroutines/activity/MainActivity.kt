@@ -19,10 +19,12 @@ import com.example.bod.kotlincoroutines.User
 import com.example.bod.kotlincoroutines.by.BaseImpl
 import com.example.bod.kotlincoroutines.by.Derived
 import com.example.bod.kotlincoroutines.by.Example
+import com.example.bod.kotlincoroutines.paging.ConvertAdapter
 import com.example.bod.kotlincoroutines.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.lang.reflect.ParameterizedType
 
 class MainActivity : BaseActivity() {
 
@@ -58,12 +60,15 @@ class MainActivity : BaseActivity() {
 
         preKtx()
 
+
+        generateClick()
     }
 
 
     @SuppressLint("SetTextI18n")
     fun preKtx(){
         val context = this as Context
+
 
         "".toUri()
 
@@ -74,6 +79,8 @@ class MainActivity : BaseActivity() {
         tvSync.setOnClickListener {
             startActivity(Intent(it.context,MotionActivity::class.java))
         }
+
+
 
 
 
@@ -90,7 +97,16 @@ class MainActivity : BaseActivity() {
                 }.takeIf {
                     it.isNotEmpty()
                 }?.random()
-        Log.d("Bob", randomValue + " ")
+
+
+        val paramType = ConvertAdapter::class.java.genericSuperclass as ParameterizedType
+        val typeArray = paramType.actualTypeArguments
+        val type = typeArray[0]
+        val typeTwo = typeArray[1]
+
+        tvAsync.text ="" +type+ "  "+typeTwo
+
+        Log.d("Bob", randomValue + " "+type+" "+typeTwo)
     }
 
 
