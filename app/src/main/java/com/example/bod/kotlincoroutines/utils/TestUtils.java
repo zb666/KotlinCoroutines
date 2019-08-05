@@ -12,7 +12,7 @@ import com.example.bod.kotlincoroutines.LogUtils;
  */
 public class TestUtils {
 
-    private static Context sContext;
+    private static volatile Context sContext;
 
     public static void init(Context context){
        sContext = context.getApplicationContext();
