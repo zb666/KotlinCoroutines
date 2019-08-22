@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KotlinCoroutines</string>
+    <string name="viewmodel">ViewModel 专项测试</string>
+    <string name="name_title">%1$s(%2$d minutes)</string>
 </resources>

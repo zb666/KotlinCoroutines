@@ -14,6 +14,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+    <com.example.bod.kotlincoroutines.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvSync"
@@ -29,6 +32,29 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSync" />
 
+        <TextView
+            style="@style/style_common_tv"
+            android:text="tvAsync"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSync" />
+
+        <TextView
+            style="@style/style_common_tv"
+            android:text="tvAsync"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSync" />
+        <TextView
+            style="@style/style_common_tv"
+            android:text="tvAsync"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSync" />
+
+        <TextView
+            style="@style/style_common_tv"
+            android:text="tvAsync"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSync" />
+    </com.example.bod.kotlincoroutines.FlowLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_test"
             android:layout_width="match_parent"

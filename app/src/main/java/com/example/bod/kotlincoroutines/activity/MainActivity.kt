@@ -1,44 +1,73 @@
 package com.example.bod.kotlincoroutines.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.net.toUri
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
-import androidx.core.view.setPadding
 import com.blankj.utilcode.util.ScreenUtils
-import com.example.bod.kotlincoroutines.LogUtils
-import com.example.bod.kotlincoroutines.Name
-import com.example.bod.kotlincoroutines.R
-import com.example.bod.kotlincoroutines.User
+import com.example.bod.kotlincoroutines.*
 import com.example.bod.kotlincoroutines.by.BaseImpl
 import com.example.bod.kotlincoroutines.by.Derived
 import com.example.bod.kotlincoroutines.by.Example
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
-import com.example.bod.kotlincoroutines.utils.TestUtils
-import com.example.bod.kotlincoroutines.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.io.File
 import java.lang.reflect.ParameterizedType
+import java.util.*
 
 class MainActivity : BaseActivity() {
 
     var mediaPlayer: MediaPlayer? = null
 
+    var mStatus = 0x0000001
+
+    private val MODE_SHIFT = 30
+
+    private val MODE_MASK = 0x3 shl MODE_SHIFT
+
+    val resUrl = "https://resources-en.brainco.cn/now/course/train/meditation/lrc.txt"
+
+    val listEle = arrayListOf<String>()
+
+    val ss = "sss"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        listOf("1","2","3","4","5").withIndex().forEach {
-            Log.d("Bob", "$it.index "+it.value)
+        val pair = 1 to "zhobo"
+        pair.second
+
+        val find = listEle.find {
+            it.isNotEmpty()
         }
+
+
+
+        listEle.map {
+
+        }
+
+        listOf("1", "2", "3", "4", "5").withIndex().forEach {
+            Log.d("Bob", "$it.index " + it.value)
+        }
+
+
+        tvBottom.text = """
+            First
+            Second
+            Third
+        """.trimIndent()
+
+        tvBottom.text = "${SysZhVerifyUtil.isZh()}+${Locale.getDefault().language}"
+
+//        val i = 1 or 2
+//        1 xor 2
 
         val kProperty1 = User::name
         val kFunction1 = User::test
@@ -64,11 +93,48 @@ class MainActivity : BaseActivity() {
 
 
         generateClick()
+
+//        tvAsync.text = "Beginner Congratulations! You first-time log into Focus Now!"
+//                .toSpannable()
+//                .apply {
+//                    setSpan(ForegroundColorSpan(0xFF457CFD.toInt()), 49, length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+//                }
+
+        //https://resources-en.brainco.cn/now/course/train/meditation/lrc.txt
+        var pathFile = resUrl.substring(resUrl.indexOf("courses") + "courses".length + 1, resUrl.length).replace("/", "_")
+        val cacheFile = pathFile.cacheFile()
+
+        tvAsync.text = cacheFile.absolutePath
+
+        tvAsync.text = resources.getString(R.string.name_title, "Chionese", 2)
+
+        var strBuild = StringBuilder()
+        for (index in 1..10) {
+            strBuild.append("$index")
+        }
+        tvBottom.text = strBuild
+
+        tvBottom.setOnClickListener {
+            myViewGroup.invalidate()
+        }
+
+        val name = Name("")
+       launch {
+            name.getToken("MyToken") {
+                tvBottom.text = it.length.toString()
+                it.length
+            }
+        }
+
+    }
+
+    private fun String.cacheFile(): File {
+        return File(cacheDir.path + File.separator + this)
     }
 
 
     @SuppressLint("SetTextI18n")
-    fun preKtx(){
+    fun preKtx() {
         val context = this as Context
 
 
@@ -79,17 +145,14 @@ class MainActivity : BaseActivity() {
 //        }
 
         tvSync.setOnClickListener {
-            startActivity(Intent(it.context,MotionActivity::class.java))
+            startActivity(Intent(it.context, MotionActivity::class.java))
 
         }
 
 
-
-
-
     }
 
-    fun testAction(action:(String)->Int):Int{
+    fun testAction(action: (String) -> Int): Int {
         return action("1")
     }
 
@@ -107,44 +170,78 @@ class MainActivity : BaseActivity() {
         val type = typeArray[0]
         val typeTwo = typeArray[1]
 
-        tvAsync.text ="" +type+ "  "+typeTwo
+//        tvAsync.text = "" + type + "  " + typeTwo
+        tvAsync.text = resources.getString(R.string.name_title, "Chionese", 2)
 
-        Log.d("Bob", randomValue + " "+type+" "+typeTwo)
+        Log.d("Bob", randomValue + " " + type + " " + typeTwo)
+
+        try {
+            1 / 0
+            "".substring(0, 3)
+        } catch (ex: Throwable) {
+            val exception = ex
+            val exception1 = ex
+        }
+
+        launch(context = Dispatchers.Main) {
+            val result = withContext(context = Dispatchers.IO) {
+                delay(10000)
+                "result ${Thread.currentThread().name}"
+            }
+            LogUtils.showLog("BobAwait", Thread.currentThread().name + result)
+        }
+
+        viewModelStore.clear()
+
+
     }
 
 
-    fun toSet(){
-        listOf("1","2","3").toSet()
-        mapOf("1" to 1,"2" to 2).any {
+    fun toSet() {
+        listOf("1", "2", "3").toSet()
+        mapOf("1" to 1, "2" to 2).any {
             it.key.equals("1")
         }
 
         val flatten = listOf(listOf("1"), listOf("2"), listOf("3"))
 
-        listOf("1","2","3").filter { it == "2" }.takeIf {
+        listOf("1", "2", "3").filter { it == "2" }.takeIf {
             it.isNotEmpty()
         }?.random()
     }
 
-    fun flatMap(){
+    fun flatMap() {
         //这里多了Map过程
         val flatMap = listOf("1", "2", "4").flatMap {
             it.toMutableList()
         }
-        Log.d("Bob",flatMap.toString())
+        Log.d("Bob", flatMap.toString())
 
 
         //这里没有map过程
         val flatten = listOf(listOf("1"), listOf("22"), listOf("3")).flatten()
-        Log.d("Bob",flatten.toString())
+        Log.d("Bob", flatten.toString())
 
         ScreenUtils.getAppScreenHeight()
 
     }
 
-    fun arrayTest(){
+    fun arrayTest() {
         val intArray = intArrayOf(1, 2, 3)
         val mulArray = arrayOf("1", 1, "2", 2, "3")
+    }
+
+
+    fun test(action: (String) -> Activity) {
+        action("").isFinishing
+    }
+
+    suspend fun String.loadCache(): File {
+        return coroutineScope {
+            withContext(Dispatchers.IO) {
+                File("$this")
+            }
+        }
     }
 
 

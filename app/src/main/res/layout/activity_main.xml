@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/tvSync"
         style="@style/style_common_tv"
-        android:text="ViewModel专项测试"
+        android:text="@string/viewmodel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,5 +23,20 @@
         android:text="tvAsync"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSync" />
+
+    <TextView
+        android:id="@+id/tvBottom"
+        android:text="nfdsjkhnfkdjs"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/style_common_tv" />
+
+    <com.example.bod.kotlincoroutines.view.MyViewGroup
+        android:id="@+id/myViewGroup"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="@dimen/dp_40"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
