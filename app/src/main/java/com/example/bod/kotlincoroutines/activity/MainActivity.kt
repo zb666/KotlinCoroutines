@@ -41,6 +41,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val pair = 1 to "zhobo"
         pair.second
 
@@ -187,6 +188,10 @@ class MainActivity : BaseActivity() {
             tvAsync.text ="$it"
         }
 //        tvSync.text = mutableListOf("111",111,true).toString()
+
+        mapOf(1 to "a",2 to "b",3 to "c").forEach {
+           LogUtils.showLog("MapTest","${it.key} ${it.value}")
+        }
 
     }
 

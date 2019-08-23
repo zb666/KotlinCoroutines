@@ -1,0 +1,48 @@
+
+ class BuildTimeListener implements TaskExecutionListener, BuildListener {
+
+    @Override
+    void buildStarted(Gradle gradle) {
+
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        print('Task spend time')
+        for (time in times) {
+            if (time[0] >= 10) {
+                println("%7sms %s\n", time)
+            }
+        }
+    }
+
+    private times = []
+
+    @Override
+    void beforeExecute(Task task) {
+        times.add([System.currentTimeMillis(), task.path])
+        print(task.name + ' ' + task.description)
+    }
+
+    @Override
+    void afterExecute(Task task, TaskState state) {
+
+    }
+}
+
+

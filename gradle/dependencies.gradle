@@ -1,0 +1,13 @@
+ext.versions = [
+        kotlin            : '1.3.31',
+        leakcanary_android: '这是LeakCanary的版本依赖',
+        ui:[
+                brh:"1.9.1",
+                image_picker:'Image Picker Version 2.0.1'
+        ]
+]
+
+ext.deps = [
+        out:'1.5.1',
+        in:'2.0.1'
+]
