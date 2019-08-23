@@ -19,6 +19,7 @@ import kotlinx.coroutines.*
 import java.io.File
 import java.lang.reflect.ParameterizedType
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
 
@@ -119,12 +120,73 @@ class MainActivity : BaseActivity() {
         }
 
         val name = Name("")
-       launch {
+        launch {
             name.getToken("MyToken") {
                 tvBottom.text = it.length.toString()
                 it.length
             }
         }
+
+        val strPair = 1 to "str"
+        val sb = StringBuilder()
+        val map = arrayOf(1_000, 2_000, 3_000).asSequence().map {
+            it
+        }.filter {
+            it > 0
+        }.forEach {
+            sb.append(it)
+        }
+
+        tvSync.text = sb
+
+
+
+        listOf("abc", "def").flatMap {
+            it.toList()
+        }.let {
+            //            tvSync.text = it
+        }
+
+        tvSync.text = listOf(listOf("1", "2"), listOf("3", "4"))
+                .flatten().toString()
+
+        val toSet = listOf("1", "2", "3").toSet()
+
+        val listPerson = ArrayList<User>()
+
+        (1..100).forEach {
+            listPerson.add(User.newUser("$it"))
+        }
+
+        listPerson.asSequence().filter {
+            it.name.length>1 //Filter first 有利于 减少map 变化的开销
+        }.map {
+            it.name
+        }.toList().let {
+            tvSync.text = it.toString()
+        }
+
+        var aaa  =StringBuilder()
+        (1..20).asSequence()
+                .filter {
+                    it%2==0 && it>15
+                }.map {
+                    "s $it "
+                }.toList().forEach {
+                    aaa.append(it).let {
+                        tvAsync.text = it
+                    }
+                }
+
+        //any 任意一个满足
+        //all 需要全部满足
+
+        arrayOf(1,2,3).all {
+            it<2
+        }.let {
+            tvAsync.text ="$it"
+        }
+//        tvSync.text = mutableListOf("111",111,true).toString()
 
     }
 
@@ -243,7 +305,6 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
 
 
 }
