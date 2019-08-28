@@ -115,6 +115,7 @@ dependencies {
     implementation 'com.blankj:utilcodex:1.25.2'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-1'
+    implementation("com.squareup.okhttp3:okhttp:4.1.0")
 
 }
 

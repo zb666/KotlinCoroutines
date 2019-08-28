@@ -1,5 +1,6 @@
 package com.example.bod.kotlincoroutines.activity
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -13,6 +14,9 @@ import com.example.bod.kotlincoroutines.*
 import com.example.bod.kotlincoroutines.by.BaseImpl
 import com.example.bod.kotlincoroutines.by.Derived
 import com.example.bod.kotlincoroutines.by.Example
+import com.example.bod.kotlincoroutines.download.AppUpdate
+import com.example.bod.kotlincoroutines.download.DownloadBean
+import com.example.bod.kotlincoroutines.download.INetCallback
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -24,6 +28,8 @@ import kotlin.collections.ArrayList
 class MainActivity : BaseActivity() {
 
     var mediaPlayer: MediaPlayer? = null
+
+    val updateUrl = "http://59.110.162.30/v450_imooc_updater.apk"
 
     var mStatus = 0x0000001
 
@@ -103,7 +109,7 @@ class MainActivity : BaseActivity() {
 //                }
 
         //https://resources-en.brainco.cn/now/course/train/meditation/lrc.txt
-        var pathFile = resUrl.substring(resUrl.indexOf("courses") + "courses".length + 1, resUrl.length).replace("/", "_")
+        val pathFile = resUrl.substring(resUrl.indexOf("courses") + "courses".length + 1, resUrl.length).replace("/", "_")
         val cacheFile = pathFile.cacheFile()
 
         tvAsync.text = cacheFile.absolutePath
@@ -160,17 +166,17 @@ class MainActivity : BaseActivity() {
         }
 
         listPerson.asSequence().filter {
-            it.name.length>1 //Filter first 有利于 减少map 变化的开销
+            it.name.length > 1 //Filter first 有利于 减少map 变化的开销
         }.map {
             it.name
         }.toList().let {
             tvSync.text = it.toString()
         }
 
-        var aaa  =StringBuilder()
+        var aaa = StringBuilder()
         (1..20).asSequence()
                 .filter {
-                    it%2==0 && it>15
+                    it % 2 == 0 && it > 15
                 }.map {
                     "s $it "
                 }.toList().forEach {
@@ -182,16 +188,55 @@ class MainActivity : BaseActivity() {
         //any 任意一个满足
         //all 需要全部满足
 
-        arrayOf(1,2,3).all {
-            it<2
+        arrayOf(1, 2, 3).all {
+            it < 2
         }.let {
-            tvAsync.text ="$it"
+            tvAsync.text = "$it"
         }
 //        tvSync.text = mutableListOf("111",111,true).toString()
 
-        mapOf(1 to "a",2 to "b",3 to "c").forEach {
-           LogUtils.showLog("MapTest","${it.key} ${it.value}")
+        mapOf(1 to "a", 2 to "b", 3 to "c").forEach {
+            LogUtils.showLog("MapTest", "${it.key} ${it.value}")
         }
+
+        ValueAnimator.ofFloat(0f, 1f)
+                .apply {
+                    addUpdateListener {
+                        LogUtils.showLog("animatedValue", "${it.animatedValue}")
+
+                    }
+                }.start()
+
+
+        tvAsync.text = "安装"
+        tvAsync.setOnClickListener {
+            //MD5 可以用于文件下载过程中防止被篡改和数据丢失
+            startDownload()
+        }
+    }
+
+    private fun checkUpdate() {
+        AppUpdate.getInstance().checkUpdate("http://www.52res.cn/appupdate/update.json", this, object : INetCallback {
+            override fun failed(throwable: Throwable?) {
+                LogUtils.showLog("BobUpgrade", throwable?.toString() ?: "")
+
+            }
+
+            override fun success(response: String?) {
+                LogUtils.showLog("BobUpgrade", DownloadBean.parse(response)!!.toString())
+            }
+
+        })
+    }
+
+    private fun startDownload() {
+//        val file = File(cacheDir,"zhy")
+//        if (!file.exists()){
+//            file.mkdir()
+//        }
+
+        //开始安装
+        AppUpdate.getInstance().startDonwload(this,updateUrl)
 
     }
 
@@ -296,6 +341,9 @@ class MainActivity : BaseActivity() {
     fun arrayTest() {
         val intArray = intArrayOf(1, 2, 3)
         val mulArray = arrayOf("1", 1, "2", 2, "3")
+        test {
+            this
+        }
     }
 
 

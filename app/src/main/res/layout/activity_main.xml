@@ -24,6 +24,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSync" />
 
+    <HorizontalScrollView
+        app:layout_constraintTop_toTopOf="@+id/tvAsync"
+        app:layout_constraintLeft_toLeftOf="@+id/tvAsync"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"/>
+
     <TextView
         android:id="@+id/tvBottom"
         android:text="nfdsjkhnfkdjs"
