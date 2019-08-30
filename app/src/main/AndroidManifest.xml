@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MotionActivity" />
+        <activity android:name=".activity.AsyncInflateActivity" />
 
         <provider
             android:name=".InitContentProvider"

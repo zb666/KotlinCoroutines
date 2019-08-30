@@ -43,6 +43,8 @@ class MainActivity : BaseActivity() {
 
     val ss = "sss"
 
+    val toSetList = arrayListOf(1, 2, 5, 4, 3, 4)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -71,6 +73,12 @@ class MainActivity : BaseActivity() {
             Second
             Third
         """.trimIndent()
+
+
+        val flattenList = listOf(listOf("1"), listOf("2")).flatMap {
+            listOf(it) //合并集合元素
+        }.flatten()
+        //flatten 平铺集合元素
 
         tvBottom.text = "${SysZhVerifyUtil.isZh()}+${Locale.getDefault().language}"
 
@@ -123,7 +131,8 @@ class MainActivity : BaseActivity() {
         tvBottom.text = strBuild
 
         tvBottom.setOnClickListener {
-            myViewGroup.invalidate()
+            //            myViewGroup.invalidate()
+            startActivity(Intent(it.context, AsyncInflateActivity::class.java))
         }
 
         val name = Name("")
@@ -213,13 +222,43 @@ class MainActivity : BaseActivity() {
             //MD5 可以用于文件下载过程中防止被篡改和数据丢失
             startDownload()
         }
+
+        launch {
+            delay(100)
+            tvBottom.text = toSetList.toSet().toString()
+        }
+
+        val map1 = toSetList.map {
+            it.hashCode()
+        }
+
+
+        val foo = { x: Int -> val y = x + 1 }
+
+        val mList = arrayListOf<Body>()
+        (0 until 10).forEach {
+            mList.add(Body("aaa",age = it))
+        }
+
+        val list = listOf(1..20,2..15,3..10)
+        //集合中元素的组合 并且做变化
+        val listStr = list.flatMap {
+            it.map {
+                "字符串$it"
+            }
+        }
+        //合并集合元素成为一个集合
+        listStr.forEach {
+            LogUtils.showLog("BobList",it)
+        }
+
+
     }
 
     private fun checkUpdate() {
         AppUpdate.getInstance().checkUpdate("http://www.52res.cn/appupdate/update.json", this, object : INetCallback {
             override fun failed(throwable: Throwable?) {
                 LogUtils.showLog("BobUpgrade", throwable?.toString() ?: "")
-
             }
 
             override fun success(response: String?) {
@@ -236,7 +275,7 @@ class MainActivity : BaseActivity() {
 //        }
 
         //开始安装
-        AppUpdate.getInstance().startDonwload(this,updateUrl)
+        AppUpdate.getInstance().startDonwload(this, updateUrl)
 
     }
 
