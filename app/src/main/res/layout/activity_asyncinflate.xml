@@ -12,6 +12,32 @@
         android:gravity="center"
         android:text="异步加载" />
 
+    <TextView
+        android:id="@+id/tvNewFile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:text="异步加载" />
+
+    <TextView
+        android:id="@+id/tvMkDir"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:text="tvMkDir" />
+
+    <TextView
+        android:id="@+id/tvMKkDirs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:text="tvMKkDirs" />
+
+
+    <ImageView
+        android:id="@+id/decodeIV"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
@@ -21,15 +47,14 @@
         app:lottie_imageAssetsFolder="images/energy_entry"
         app:lottie_loop="false" />
 
-    <com.example.bod.kotlincoroutines.LoadView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_72" />
-
     <com.example.bod.kotlincoroutines.BigView
         android:id="@+id/largeImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.example.bod.kotlincoroutines.LoadView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_72" />
 
 
 </LinearLayout>

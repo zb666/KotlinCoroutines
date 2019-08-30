@@ -247,11 +247,33 @@ class MainActivity : BaseActivity() {
                 "字符串$it"
             }
         }
+
+//        list.fold(10,{acc: Int, intRange: IntRange ->
+//            intRange
+//        })
+
         //合并集合元素成为一个集合
         listStr.forEach {
             LogUtils.showLog("BobList",it)
         }
 
+        val oneFile = "1".createFile("1")
+        if (!oneFile.parentFile.exists()){
+            oneFile.parentFile.mkdirs()
+        }
+
+        mapOf(1 to "a" , 2 to "b",3 to "c").forEach {
+            it.takeIf {
+                it.key>1
+            }.run {
+                LogUtils.showLog("BobMap",it.value)
+            }
+        }
+
+        "222".takeIf { it.toInt()>0 }.let {
+            LogUtils.showLog("BobMap",it?:"")
+
+        }
 
     }
 
@@ -396,6 +418,10 @@ class MainActivity : BaseActivity() {
                 File("$this")
             }
         }
+    }
+
+    fun String.createFile(fileNmae:String):File{
+        return File(cacheDir,fileNmae)
     }
 
 
