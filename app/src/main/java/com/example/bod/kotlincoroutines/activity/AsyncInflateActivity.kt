@@ -1,7 +1,8 @@
 package com.example.bod.kotlincoroutines.activity
 
-import android.graphics.BitmapFactory
+import android.graphics.*
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.system.Os.mkdir
 import android.system.Os.write
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
@@ -53,34 +54,38 @@ class AsyncInflateActivity : BaseActivity() {
 
     }
 
-    fun calculateInSampleSize(options:BitmapFactory.Options,dstWidth:Int,dstHeight:Int):Int{
+    fun calculateInSampleSize(options: BitmapFactory.Options, dstWidth: Int, dstHeight: Int): Int {
         val rawHeight = options.outHeight
         val rawWidth = options.outWidth
         var inSampleSize = 1
-        if (rawWidth>dstWidth || rawHeight>dstHeight){
-            val widthSampleSize = rawWidth/dstWidth
-            val heightSampleSize = rawHeight/dstHeight
+        if (rawWidth > dstWidth || rawHeight > dstHeight) {
+            val widthSampleSize = rawWidth / dstWidth
+            val heightSampleSize = rawHeight / dstHeight
             inSampleSize = min(widthSampleSize, heightSampleSize)
         }
         return inSampleSize
     }
 
 
+    private var mCanvas:Canvas? = null
 
     private fun decodeStart() {
         val bitmapOption = BitmapFactory.Options()
         bitmapOption.inJustDecodeBounds = true
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.beach, bitmapOption)
-        LogUtils.showLog("BitmapFactory", "Bitmap real " +(bitmap == null) + " w&h " + bitmapOption.outHeight + " " + bitmapOption.outWidth + " " + bitmapOption.outMimeType)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.beach, bitmapOption)//.copy(Bitmap.Config.RGB_565,true)
+        LogUtils.showLog("BitmapFactory", "Bitmap real " + (bitmap == null) + " w&h " + bitmapOption.outHeight + " " + bitmapOption.outWidth + " " + bitmapOption.outMimeType)
 
         val targetSample = calculateInSampleSize(bitmapOption, decodeIV.width, decodeIV.height)
         bitmapOption.inSampleSize = targetSample
         bitmapOption.inJustDecodeBounds = false
-        val decodedBitmap = BitmapFactory.decodeResource(resources, R.drawable.beach, bitmapOption)
+        val decodedBitmap = BitmapFactory.decodeResource(resources, R.drawable.beach, bitmapOption).copy(Bitmap.Config.RGB_565,true)
         //0.33MB
-        LogUtils.showLog("BitmapFactory", "Bitmap real " +decodedBitmap.byteCount+(decodedBitmap == null) + decodedBitmap.width+" " + decodedBitmap.height+" w&h " + bitmapOption.outHeight + " " + bitmapOption.outWidth + " " + bitmapOption.outMimeType)
+        LogUtils.showLog("BitmapFactory", "Bitmap real " + decodedBitmap.byteCount + (decodedBitmap == null) + decodedBitmap.width + " " + decodedBitmap.height + " w&h " + bitmapOption.outHeight + " " + bitmapOption.outWidth + " " + bitmapOption.outMimeType)
 
+        mCanvas = Canvas(decodedBitmap)
         decodeIV.setImageBitmap(decodedBitmap)
+
+        myBitmap.setCanvas(mCanvas)
 
     }
 
@@ -128,5 +133,6 @@ class AsyncInflateActivity : BaseActivity() {
             }
         }
     }
+
 
 }
