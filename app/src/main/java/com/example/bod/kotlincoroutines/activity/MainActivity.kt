@@ -6,9 +6,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
+import android.net.MacAddress
 import android.os.Bundle
 import android.util.Log
 import androidx.core.net.toUri
+import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.RomUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.example.bod.kotlincoroutines.*
 import com.example.bod.kotlincoroutines.by.BaseImpl
@@ -20,9 +23,11 @@ import com.example.bod.kotlincoroutines.download.INetCallback
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import timber.log.Timber
 import java.io.File
 import java.lang.reflect.ParameterizedType
 import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
@@ -32,6 +37,8 @@ class MainActivity : BaseActivity() {
     val updateUrl = "http://59.110.162.30/v450_imooc_updater.apk"
 
     var mStatus = 0x0000001
+
+    val atomicInt = AtomicInteger(0)
 
     private val MODE_SHIFT = 30
 
@@ -45,10 +52,16 @@ class MainActivity : BaseActivity() {
 
     val toSetList = arrayListOf(1, 2, 5, 4, 3, 4)
 
+    @SuppressLint("BinaryOperationInTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val incrementAndGet = atomicInt.incrementAndGet()
+        val kuhgkujhjkhkj = atomicInt.incrementAndGet()
+        com.blankj.utilcode.util.LogUtils.dTag("BobAto",atomicInt.incrementAndGet())
+        com.blankj.utilcode.util.LogUtils.dTag("BobAto",atomicInt.incrementAndGet())
 
         val pair = 1 to "zhobo"
         pair.second
@@ -57,7 +70,10 @@ class MainActivity : BaseActivity() {
             it.isNotEmpty()
         }
 
+        RomUtils.getRomInfo().name
 
+
+        Timber.d("DeviceTest"+RomUtils.getRomInfo().name + " "+RomUtils.getRomInfo().version+" "+DeviceUtils.getMacAddress())
 
         listEle.map {
 
@@ -237,10 +253,10 @@ class MainActivity : BaseActivity() {
 
         val mList = arrayListOf<Body>()
         (0 until 10).forEach {
-            mList.add(Body("aaa",age = it))
+            mList.add(Body("aaa", age = it))
         }
 
-        val list = listOf(1..20,2..15,3..10)
+        val list = listOf(1..20, 2..15, 3..10)
         //集合中元素的组合 并且做变化
         val listStr = list.flatMap {
             it.map {
@@ -254,28 +270,44 @@ class MainActivity : BaseActivity() {
 
         //合并集合元素成为一个集合
         listStr.forEach {
-            LogUtils.showLog("BobList",it)
+            LogUtils.showLog("BobList", it)
         }
 
         val oneFile = "1".createFile("1")
-        if (!oneFile.parentFile.exists()){
+        if (!oneFile.parentFile.exists()) {
             oneFile.parentFile.mkdirs()
         }
 
-        mapOf(1 to "a" , 2 to "b",3 to "c").forEach {
+        mapOf(1 to "a", 2 to "b", 3 to "c").forEach {
             it.takeIf {
-                it.key>1
+                it.key > 1
             }.run {
-                LogUtils.showLog("BobMap",it.value)
+                LogUtils.showLog("BobMap", it.value)
             }
         }
 
-        "222".takeIf { it.toInt()>0 }.let {
-            LogUtils.showLog("BobMap",it?:"")
+        "222".takeIf { it.toInt() > 0 }.let {
+            LogUtils.showLog("BobMap", it ?: "")
 
         }
 
+        tvReified.text = "StrInfo".asType()
+
+
+        arrayListOf("1", "2").transMap { str ->
+            com.blankj.utilcode.util.LogUtils.dTag("BobTransForm", str.hashCode())
+        }
     }
+
+
+    inline fun <reified T, R> ArrayList<T>.transMap(tranform: (T) -> R): List<R> {
+        val mapList = ArrayList<R>(size)
+        for (element in this) {
+            mapList.add(tranform(element))
+        }
+        return mapList
+    }
+
 
     private fun checkUpdate() {
         AppUpdate.getInstance().checkUpdate("http://www.52res.cn/appupdate/update.json", this, object : INetCallback {
@@ -420,9 +452,17 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    fun String.createFile(fileNmae:String):File{
-        return File(cacheDir,fileNmae)
+    fun String.createFile(fileNmae: String): File {
+        return File(cacheDir, fileNmae)
     }
 
+    //内联 替换函数的实际调用
+    inline fun <reified T> Any.asType(): T? {
+        return if (this is T) {
+            this
+        } else {
+            null
+        }
+    }
 
 }
