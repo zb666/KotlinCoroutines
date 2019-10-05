@@ -4,16 +4,18 @@
     package="com.example.bod.kotlincoroutines">
 
     <application
-        android:allowBackup="true"
         android:name=".app.KotlinApp"
+        android:allowBackup="true"
+        android:appComponentFactory="clone"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:appComponentFactory="clone"
-        tools:replace = "android:appComponentFactory"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">
+        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.neteaseui.PaintActivity" />
+        <activity android:name=".activity.neteaseui.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MotionActivity" />
+        <activity android:name=".activity.Main2Activity" />
 
         <provider
-            android:multiprocess="true"
-            android:authorities="${applicationId}.cp"
             android:name=".InitContentProvider"
-            android:exported="false"/>
-
+            android:authorities="${applicationId}.cp"
+            android:exported="false"
+            android:multiprocess="true" />
     </application>
 
 </manifest>

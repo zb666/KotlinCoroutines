@@ -12,6 +12,9 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.core.view.setPadding
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ScreenUtils
 import com.example.bod.kotlincoroutines.LogUtils
 import com.example.bod.kotlincoroutines.Name
@@ -26,15 +29,28 @@ import com.example.bod.kotlincoroutines.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.reflect.ParameterizedType
 
 class MainActivity : BaseActivity() {
 
     var mediaPlayer: MediaPlayer? = null
 
+    var a:Int = 1111111111
+    private val _myName = MutableLiveData<String>()
+    val myName: LiveData<String> = _myName
+    // observer.mObserver.onChanged((T) mData);
+    //这里不是直接改变LiveData的值而是发送的值是相同的
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        myName.observe(this, Observer {
+           Timber.d("ObserveData: $it")
+        })
+
+        _myName.value = "From _myName"
 
         listOf("1","2","3","4","5").withIndex().forEach {
             Log.d("Bob", "$it.index "+it.value)
@@ -64,6 +80,11 @@ class MainActivity : BaseActivity() {
 
 
         generateClick()
+
+
+        image.setOnClickListener {
+            startActivity(Intent(this,Main2Activity::class.java))
+        }
     }
 
 
