@@ -19,12 +19,13 @@ import kotlin.coroutines.EmptyCoroutineContext
  * @CreateDate: 2019/10/2
  */
 class PathView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, override val coroutineContext: CoroutineContext
+
 ) : View(context, attrs, defStyleAttr),CoroutineScope {
 
     // ContextScope(SupervisorJob() + Dispatchers.Main)
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main+mJob
+//    override val coroutineContext: CoroutineContext
+//        get() = Dispatchers.Main+mJob
 
     private var mJob:Job = launch {
         coroutineScope {

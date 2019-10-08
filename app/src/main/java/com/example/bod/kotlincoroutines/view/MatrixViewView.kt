@@ -34,9 +34,8 @@ class MatrixViewView @JvmOverloads constructor(
 //                strokeCap //帽线条
 //                strokeJoin //线段连接处样式
 //                strokeMiter 画笔倾斜度
-                style = Paint.Style.FILL
+                style = Paint.Style.FILL //STROKE 和 FULL_AND STROKE相比差了一个描边的宽度 也就是5f的宽度
             }
-
 
     var src = floatArrayOf(0f, 0f, // 左上
             bitmap.width.toFloat(), 0f, // 右上
@@ -48,7 +47,7 @@ class MatrixViewView @JvmOverloads constructor(
             bitmap.width.toFloat(), (bitmap.height - 200).toFloat(), // 右下
             0f, bitmap.height.toFloat())
 
-    private var bitmapCanvas:Canvas?=null
+    private var bitmapCanvas: Canvas? = null
 
     init {
         //离屏绘制 把绘制的内容绘制到另外一个图层上
@@ -82,7 +81,7 @@ class MatrixViewView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        bitmapCanvas?.drawBitmap(bitmapCover,0f,0f,mPaint)
+        bitmapCanvas?.drawBitmap(bitmapCover, 0f, 0f, mPaint)
 
         canvas?.drawBitmap(bitmap, 0f, 0f, mPaint)
 
@@ -98,8 +97,8 @@ class MatrixViewView @JvmOverloads constructor(
 
         canvas?.apply {
             save()
-            translate(0f,bitmap.height.toFloat()*2)
-            bitmapCanvas?.drawBitmap(bitmapCover,0f,0f,mPaint)
+            translate(0f, bitmap.height.toFloat() * 2)
+            bitmapCanvas?.drawBitmap(bitmapCover, 0f, 0f, mPaint)
             restore()
         }
 

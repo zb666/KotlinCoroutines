@@ -5,16 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/ll_jump"
     tools:context=".activity.neteaseui.GuideActivity">
 
     <com.example.bod.kotlincoroutines.view.MatrixViewView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/tvPaint"
         android:text="Paint导航"
+        android:visibility="gone"
         style="@style/guidestyle" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_divider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
