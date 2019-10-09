@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import timber.log.Timber
 import kotlin.math.roundToInt
 
 /**
@@ -19,7 +20,7 @@ import kotlin.math.roundToInt
  */
 class MyItemDecor(private val context:Context) : RecyclerView.ItemDecoration() {
 
-    private val circleBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.ic_focus_round_logo)
+    private val circleBitmap = BitmapFactory.decodeResource(context.resources,R.drawable.ic_brainco)
 
     private val mPaint = Paint().apply {
         color = Color.RED
@@ -37,7 +38,7 @@ class MyItemDecor(private val context:Context) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         if (parent.getChildAdapterPosition(view) != parent.adapter!!.itemCount - 1) {
-            outRect.set(30, 10, 10, 0) //流出空隙
+            outRect.set(100, 10, 10, 0) //流出空隙
         }
     }
 
@@ -50,6 +51,7 @@ class MyItemDecor(private val context:Context) : RecyclerView.ItemDecoration() {
         val topIcon = circleBitmap.height
         for (index in 0 until childCount) {
             val child = parent.getChildAt(index)
+            val childView = parent.getChildAdapterPosition(child)
             val top = child.top
             val bottom = child.bottom
             //vertical line
@@ -58,15 +60,21 @@ class MyItemDecor(private val context:Context) : RecyclerView.ItemDecoration() {
 
             //drawCircle
             val ovalCenterX = top+30f+4f
-            if (index == 0){
+            val firstCircleY = 30f
+            val movalCenterY = top+firstCircleY
+            if (childView == 0){
+                val firstChildTop = child.top
                 val bitmapDrawable = circleBitmap.toDrawable(context.resources)
                 val bitmapWidth = circleBitmap.width
-                bitmapDrawable.setBounds((left-bitmapWidth/2).toInt(), (top+30f).toInt(), (left+bitmapWidth*2).toInt(), (30f+circleBitmap.height).toInt())
+                bitmapDrawable.setBounds(0,firstChildTop,50,firstChildTop+circleBitmap.height)
                 bitmapDrawable.draw(canvas)
+                Timber.d("Scrolling: $top   ${top+30}")
             }else{
-                canvas.drawCircle(left,ovalCenterX,10f,mPaint)
+                canvas.drawCircle(left,ovalCenterX,30f,mPaint)
             }
+
         }
+
 
 
     }
