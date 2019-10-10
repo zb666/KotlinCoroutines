@@ -20,15 +20,39 @@
         style="@style/guidestyle" />
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.bod.kotlincoroutines.view.TrainCircleView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/trainCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips"
+            android:text="训练记录"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     <com.example.bod.kotlincoroutines.view.CircleProgressBar
         android:id="@+id/circleOne"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <com.example.bod.kotlincoroutines.view.CircleProgressBar222
+    <com.example.bod.kotlincoroutines.view.CircleProgressBar
         android:id="@+id/circle222"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:visibility="gone"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
 
     <com.example.bod.kotlincoroutines.view.MyColorMatrix
         android:layout_width="match_parent"

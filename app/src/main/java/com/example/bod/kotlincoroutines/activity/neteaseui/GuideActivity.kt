@@ -2,17 +2,14 @@ package com.example.bod.kotlincoroutines.activity.neteaseui
 
 import android.animation.ValueAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.view.animation.LinearInterpolator
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bod.kotlincoroutines.MyItemDecor
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.adapter.ItemAdapter
 import kotlinx.android.synthetic.main.activity_guide.*
+import kotlinx.android.synthetic.main.layout_train_plan.*
 import timber.log.Timber
 
 class GuideActivity : BaseUiActivity(), View.OnClickListener {
@@ -25,7 +22,7 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
         for (index in 0 until 4){
             Timber.d("MyIndex: $index")
         }
-        start<ReStartActivity>()
+//        start<ReStartActivity>()
         ll_jump.setOnClickListener {
             start<ReStartActivity>()
         }
@@ -56,12 +53,23 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        ValueAnimator.ofFloat(0f, 0.7f).apply {
+        ValueAnimator.ofInt(0,18).apply {
             interpolator = LinearInterpolator()
             duration = 2000
             start()
             addUpdateListener {
-                circle222.progress = it.animatedValue as Float
+                Timber.d("ProgressDay: ${it.animatedValue}")
+                trainCircle.setProgress(it.animatedValue as Int)
+            }
+        }
+
+        ValueAnimator.ofInt(0,18).apply {
+            interpolator = LinearInterpolator()
+            duration = 2000
+            start()
+            addUpdateListener {
+                focusCircle.progress = (it.animatedValue as Int)/21.toFloat()
+                tvFinishedDay.text = (it.animatedValue as Int).toString()
             }
         }
     }
