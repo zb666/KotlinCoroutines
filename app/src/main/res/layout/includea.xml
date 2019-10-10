@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:text="啊啊啊啊啊"
+    app:layout_constraintHorizontal_weight="1"
+    android:background="@color/colorPrimary"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/weight_cs" />

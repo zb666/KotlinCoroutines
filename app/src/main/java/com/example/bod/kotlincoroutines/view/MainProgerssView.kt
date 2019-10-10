@@ -29,7 +29,7 @@ class MainProgerssView @JvmOverloads constructor(
         ValueAnimator.ofInt(finishedDay,21)
                 .apply {
                     duration = 1500
-                    progressBar.progress = animatedValue as Float
+                    progressBar.progress = (animatedValue as Float).toInt()
                 }.start()
     }
 }

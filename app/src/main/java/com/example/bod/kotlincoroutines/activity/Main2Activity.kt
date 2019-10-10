@@ -31,7 +31,7 @@ class Main2Activity : AppCompatActivity() {
                 .apply {
                     addUpdateListener {
                         val animatedValue = (it.animatedValue as Int) / 21
-                        progressBar.progress = animatedValue.toFloat()
+                        progressBar.progress = animatedValue.toFloat().toInt()
                     }
                     repeatMode = RESTART
                     duration = 1500

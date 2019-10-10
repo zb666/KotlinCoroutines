@@ -23,7 +23,7 @@ class CircleProgressBar @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    var progress = 0f
+    var progress:Int = 0
         set(value) {
             if (field != value) {
                 field = value

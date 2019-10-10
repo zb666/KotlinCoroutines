@@ -1,9 +1,11 @@
 package com.example.bod.kotlincoroutines.activity.neteaseui
 
+import android.animation.ValueAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,6 +49,19 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
                 start<ReStartActivity>()
             }
             else -> {
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        ValueAnimator.ofFloat(0f, 0.7f).apply {
+            interpolator = LinearInterpolator()
+            duration = 2000
+            start()
+            addUpdateListener {
+                circle222.progress = it.animatedValue as Float
             }
         }
     }
