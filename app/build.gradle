@@ -4,8 +4,12 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+println("Hello Gradle")
+
+def androidId = rootProject.ext.androidId.targetSdkVersion
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion androidId
     defaultConfig {
         applicationId "com.example.bod.kotlincoroutines"
         minSdkVersion 15

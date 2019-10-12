@@ -7,8 +7,13 @@ import timber.log.Timber
 
 class KotlinApp:Application() {
 
+    companion object{
+        public lateinit var application:Application
+    }
+
     override fun onCreate() {
         super.onCreate()
+        application = this
         Timber.plant(Timber.DebugTree())
         Utils.init(this)
         SoundHelper.init(this)
