@@ -33,6 +33,11 @@ class ShadeQiJianView @JvmOverloads constructor(
         min(width,height)*0.5f
     }
 
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+//        setBackgroundColor(Color.BLUE)
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         mShader.setLocalMatrix(mMatrix)

@@ -63,6 +63,10 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
 
     override fun initView() {
 
+        waterView.post {
+
+        }
+
         val spBuilder = SpannableStringBuilder("那你可真是棒棒哒").apply {
             setSpan(ForegroundColorSpan(Color.BLUE), 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
             setSpan(StyleSpan(Typeface.BOLD), 1, 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)

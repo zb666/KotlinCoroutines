@@ -41,6 +41,9 @@ class CircleCanvasBitmap @JvmOverloads constructor(
         mRadius = min(mBitmap.width, mBitmap.height).toFloat()
         scaledBitmap = mRoundBitmap.scale(mRadius.toInt()*2, (mRadius*2.toInt()).toInt())
         mPath.addCircle(mRadius, mRadius, mRadius, Path.Direction.CW)
+
+//        Bitmap.createBitmap(intArrayOf(100,100),30)
+//        Bitmap.createScaledBitmap()
     }
 
     private val mCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG)
