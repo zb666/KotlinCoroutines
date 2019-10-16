@@ -38,6 +38,7 @@ class ShadeQiJianView @JvmOverloads constructor(
         mShader.setLocalMatrix(mMatrix)
         mPaint.shader = mShader
         //绘制圆角的话也是同理
+//        canvas.drawRoundRect()
         canvas?.drawCircle(half,half,half,mPaint)
     }
 
