@@ -24,6 +24,22 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            if (!isRelease) {
+                //组件化环境 资源单独指定
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成化模式 打包整个项目的apk
+                java {
+                    //release打包的时候需要去除debug模块的代码
+                    exclude '**/debug/**' //比如去除androidmoudle模块下的DebugTestCode文件
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {

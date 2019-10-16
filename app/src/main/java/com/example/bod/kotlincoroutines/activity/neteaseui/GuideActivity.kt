@@ -3,12 +3,16 @@ package com.example.bod.kotlincoroutines.activity.neteaseui
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.*
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.*
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bod.kotlincoroutines.BuildConfig
 import com.example.bod.kotlincoroutines.MyItemDecor
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.adapter.ItemAdapter
@@ -18,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_guide.*
 import kotlinx.android.synthetic.main.layout_train_plan.*
 import kotlinx.android.synthetic.main.weight_cs.*
 import timber.log.Timber
+import kotlin.math.min
 
 class GuideActivity : BaseUiActivity(), View.OnClickListener {
 
@@ -36,11 +41,39 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
                 .copy(Bitmap.Config.RGB_565, true)
         //或者 val bitmap = Bitmap.createBitmap(originBitmap)
         val canvas = Canvas(originBitmap)
-        canvas.drawCircle(100f, 100f, 50f, mPaint)
+
+        val circleRadius = min(originBitmap.width, originBitmap.height)*0.5f
+
+        val circlePath = Path().apply {
+            addCircle(originBitmap.width * 0.5f, originBitmap.height * 0.5f, circleRadius, Path.Direction.CW)
+        }
+        canvas.drawCircle(originBitmap.width * 0.5f, originBitmap.height * 0.5f, circleRadius, mPaint)
+        canvas.clipPath(circlePath)
+
+//        mPaint.reset()
+//        mPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+//
+//        canvas.drawBitmap(originBitmap, 0f, 0f, mPaint)
+
         return originBitmap
     }
 
     override fun initView() {
+
+        val spBuilder = SpannableStringBuilder("那你可真是棒棒哒").apply {
+            setSpan(ForegroundColorSpan(Color.BLUE), 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            setSpan(StyleSpan(Typeface.BOLD), 1, 2, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            setSpan(AbsoluteSizeSpan(50), 2, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            setSpan(ImageSpan(this@GuideActivity, R.drawable.ic_big_arrow, DynamicDrawableSpan.ALIGN_BASELINE), 3, 4, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        }
+
+        spBuilder.clear()
+        spBuilder.append("你可真是66哒").apply {
+            setSpan(AbsoluteSizeSpan(50),0,3,Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        }.run {
+            tvSpan.text = spBuilder
+        }
+
         ivBg.setImageBitmap(generateCanvasBitmap())
 
         ivBg.setOnClickListener {
@@ -72,16 +105,24 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
             itemAdapter.addData(index.toString())
         }
 
-        val viewGroup = window.decorView as ViewGroup
-        viewGroup.addView(TextView(this).apply {
-            textSize =  20f
-            setTextColor(Color.RED)
-            text = "Hello I'am Bob"
-        }, RelativeLayout.LayoutParams(dp2px(Paint().apply {
-            textSize = 20f
-        }.measureText("Hello I'am Bob")),dp2px(50f)).apply {
-            topMargin = dp2px(200f)
-        })
+//        val viewGroup = window.decorView as ViewGroup
+//        viewGroup.addView(TextView(this).apply {
+//            textSize = 20f
+//            setTextColor(Color.RED)
+//            text = "Hello I'am Bob"
+//        }, RelativeLayout.LayoutParams(dp2px(Paint()
+//                .apply {
+//                    textSize = 20f
+//                }.measureText("Hello I'am Bob")), dp2px(50f)).apply {
+//            addRule(RelativeLayout.ALIGN_BOTTOM, R.id.txtView)
+//            setMargins(100, 200, 0, 0)
+//        }.apply {
+//            topMargin = dp2px(200f)
+//        })
+
+        if (BuildConfig.isRelease) {
+
+        }
     }
 
     override fun onClick(v: View?) {
@@ -96,7 +137,6 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-
         ValueAnimator.ofInt(0, 18).apply {
             interpolator = LinearInterpolator()
             duration = 2000
@@ -116,6 +156,8 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
                 tvFinishedDay.text = (it.animatedValue as Int).toString()
             }
         }
+
+
     }
 
     private val guideList by lazy {

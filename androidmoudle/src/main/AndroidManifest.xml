@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.androidmoudle" />
+    package="com.example.androidmoudle" >
+
+    <application>
+        <activity android:name=".debug.DebugActivity" />
+    </application>
+</manifest>

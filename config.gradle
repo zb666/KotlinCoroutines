@@ -4,7 +4,7 @@ ext {
     username = "Bob"
 
     // 生产/开发环境（正式/测试）
-    isRelease = true
+    isRelease = false
 
     // 建立Map存储，对象名、key都可以自定义，groovy糖果语法，非常灵活
     androidId = [

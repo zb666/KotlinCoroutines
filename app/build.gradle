@@ -10,6 +10,13 @@ def androidId = rootProject.ext.androidId.targetSdkVersion
 
 android {
     compileSdkVersion androidId
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
     defaultConfig {
         applicationId "com.example.bod.kotlincoroutines"
         minSdkVersion 15
@@ -17,6 +24,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("boolean","isRelease",String.valueOf(isRelease))
     }
     buildTypes {
         release {

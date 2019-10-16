@@ -63,7 +63,6 @@ class FocusProgressView @JvmOverloads constructor(
 
     private var sweepAngle = 228f
 
-
     fun setAngle(startAngle:Float,sweepAngle:Float){
         this.startAngle = startAngle
         this.sweepAngle = sweepAngle

@@ -2,87 +2,122 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_jump"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/ll_jump"
     tools:context=".activity.neteaseui.GuideActivity">
 
-    <com.example.bod.kotlincoroutines.view.MatrixViewView
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvPaint"
-        android:text="Paint导航"
-        android:visibility="gone"
-        style="@style/guidestyle" />
-
-    <com.example.bod.kotlincoroutines.view.TxtView
-        android:id="@+id/txtView"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/ivBg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
-
-    <ProgressBar
-        android:id="@+id/loading_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/rotate_shape"
-        android:layout_marginRight="@dimen/dp_4"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <com.example.bod.kotlincoroutines.view.TrainCircleView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:id="@+id/trainCircle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tips"
-            android:text="训练记录"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvSpan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.example.bod.kotlincoroutines.view.BitmapShaderView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.example.bod.kotlincoroutines.view.ShaderCircleView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <ImageView
+                android:id="@+id/ivBg"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <ProgressBar
+                android:id="@+id/loading_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_4"
+                android:indeterminateDrawable="@drawable/rotate_shape" />
 
 
+            <TextView
+                android:id="@+id/tvPaint"
+                style="@style/guidestyle"
+                android:text="Paint导航"
+                android:visibility="gone" />
 
-    <com.example.bod.kotlincoroutines.view.CircleProgressBar
-        android:id="@+id/circleOne"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <com.example.bod.kotlincoroutines.view.CircleProgressBar
-        android:id="@+id/circle222"
-        android:visibility="gone"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <com.example.bod.kotlincoroutines.view.MyColorMatrix
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="训练记录"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tips" />
 
-    <com.example.bod.kotlincoroutines.view.FocusTrainProgressView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"/>
+                <com.example.bod.kotlincoroutines.view.TrainCircleView
+                    android:id="@+id/trainCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_divider"
-        android:layout_weight="3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_divider"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3" />
+
+            <com.example.bod.kotlincoroutines.view.CircleCanvasBitmap
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+
+            <com.example.bod.kotlincoroutines.view.CircleProgressBar
+                android:id="@+id/circleOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <com.example.bod.kotlincoroutines.view.CircleProgressBar
+                android:id="@+id/circle222"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="gone" />
+
+
+            <com.example.bod.kotlincoroutines.view.FocusTrainProgressView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <com.example.bod.kotlincoroutines.view.MatrixViewView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <com.example.bod.kotlincoroutines.view.MyColorMatrix
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.example.bod.kotlincoroutines.view.TxtView
+                android:id="@+id/txtView"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+            <com.example.bod.kotlincoroutines.view.XferModeView
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
