@@ -6,6 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.example.bod.kotlincoroutines.R
+import kotlin.math.max
 
 /**
  *
@@ -18,21 +19,30 @@ class BitmapShaderView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
 
-    private val mPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        shader = BitmapShader(BitmapFactory.decodeResource(resources, R.drawable.oceania),Shader.TileMode.CLAMP,Shader.TileMode.CLAMP)
+    private val mPaint by lazy {
+        Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            shader = BitmapShader(BitmapFactory.decodeResource(resources, R.drawable.oceania), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+            shader.setLocalMatrix(mMatrix)
+        }
     }
 
     private val mSourceBitmap = BitmapFactory.decodeResource(resources, R.drawable.oceania)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        setMeasuredDimension(mSourceBitmap.width*2,mSourceBitmap.height*2)
+        setMeasuredDimension(mSourceBitmap.width * 2, mSourceBitmap.height * 2)
+    }
+
+    private val mMatrix by lazy {
+        Matrix().also {
+            it.setScale((width / mSourceBitmap.width).toFloat(), (height / mSourceBitmap.height).toFloat())
+        }
     }
 
     @SuppressLint("NewApi")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         setBackgroundColor(Color.WHITE)
-        canvas?.drawRoundRect(0f,0f,width.toFloat(),height.toFloat(),50f,50f,mPaint)
+        canvas?.drawRoundRect(0f, 0f, width.toFloat() / 2, height.toFloat() / 2, 50f, 50f, mPaint)
     }
 
 

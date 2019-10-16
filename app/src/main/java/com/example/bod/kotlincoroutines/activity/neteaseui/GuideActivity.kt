@@ -12,6 +12,9 @@ import android.view.animation.LinearInterpolator
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.bod.kotlincoroutines.BuildConfig
 import com.example.bod.kotlincoroutines.MyItemDecor
 import com.example.bod.kotlincoroutines.R
@@ -131,6 +134,7 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
                 start<ReStartActivity>()
             }
             else -> {
+
             }
         }
     }
