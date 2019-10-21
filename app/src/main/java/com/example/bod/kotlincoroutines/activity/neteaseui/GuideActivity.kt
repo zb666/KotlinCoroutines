@@ -7,23 +7,19 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.*
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.bod.kotlincoroutines.BuildConfig
+import com.example.bod.kotlincoroutines.GlideImageLoader
 import com.example.bod.kotlincoroutines.MyItemDecor
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.adapter.ItemAdapter
+import com.example.bod.kotlincoroutines.create.NewObserverOnSubscribe
+import com.example.bod.kotlincoroutines.create.Observable
+import com.example.bod.kotlincoroutines.create.Observer
 import com.example.bod.kotlincoroutines.sound.TestSoundPool
-import com.example.bod.kotlincoroutines.view.dp2px
 import kotlinx.android.synthetic.main.activity_guide.*
 import kotlinx.android.synthetic.main.layout_train_plan.*
-import kotlinx.android.synthetic.main.weight_cs.*
 import timber.log.Timber
 import kotlin.math.min
 
@@ -45,7 +41,7 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
         //或者 val bitmap = Bitmap.createBitmap(originBitmap)
         val canvas = Canvas(originBitmap)
 
-        val circleRadius = min(originBitmap.width, originBitmap.height)*0.5f
+        val circleRadius = min(originBitmap.width, originBitmap.height) * 0.5f
 
         val circlePath = Path().apply {
             addCircle(originBitmap.width * 0.5f, originBitmap.height * 0.5f, circleRadius, Path.Direction.CW)
@@ -63,9 +59,25 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
 
     override fun initView() {
 
-        waterView.post {
+        //new A().print()
+        //new AA(A()) print()-> a.print()
+        Observable.create(object : NewObserverOnSubscribe<String> {
+            override fun subscribe(observer: Observer<String>) {
+                observer.onNext("123456")  //就是这种方式骚一点而已
+            }
+        }).transObs(object : Observer<String> {
+            override fun onNext(t: String) {
+                Timber.d("OnNext:$t")
+            }
 
-        }
+            override fun onError() {
+
+            }
+
+            override fun onCompleted() {
+
+            }
+        })
 
         val spBuilder = SpannableStringBuilder("那你可真是棒棒哒").apply {
             setSpan(ForegroundColorSpan(Color.BLUE), 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -76,7 +88,7 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
 
         spBuilder.clear()
         spBuilder.append("你可真是66哒").apply {
-            setSpan(AbsoluteSizeSpan(50),0,3,Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            setSpan(AbsoluteSizeSpan(50), 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         }.run {
             tvSpan.text = spBuilder
         }
@@ -165,6 +177,11 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
             }
         }
 
+        cornerBanner.apply {
+            setImages(listOf(R.drawable.asia, R.drawable.asia))
+            setImageLoader(GlideImageLoader())
+            start()
+        }
 
     }
 

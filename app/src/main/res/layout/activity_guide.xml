@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".activity.neteaseui.GuideActivity">
 
+    <com.example.bod.kotlincoroutines.CornerBanner
+        android:id="@+id/cornerBanner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
