@@ -48,7 +48,7 @@ public class Observable<T> {
     }
 
     public Observable<T> subscribeOn(){
-        return create(new ObservableOnMain<T>(observableOnSubscribe));
+        return create(new ObservableOnMain<>(observableOnSubscribe));
     }
 
 }

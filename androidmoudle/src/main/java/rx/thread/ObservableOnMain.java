@@ -29,7 +29,9 @@ public class ObservableOnMain<T> implements ObservableOnSubscribe<T> {
 
     @Override
     public void subscribe(final Observer<? super T> observerEmitter) {
+        //同时这里由于实现了ObservableOnSubscribe接口,传递新的Emitter对象的方法
         PackageObservable<T> packageObservable = new PackageObservable<>(source, (Observer<T>) observerEmitter);
+        //又包装了一层
         source.subscribe(packageObservable);
     }
 
