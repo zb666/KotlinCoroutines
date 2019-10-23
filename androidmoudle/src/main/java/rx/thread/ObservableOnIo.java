@@ -10,6 +10,7 @@ import rx.Observer;
  * @ClassName: ObservableOnIO
  * @Description:
  * @CreateDate: 2019/10/23
+ * 给所有上游切换异步线程
  */
 public class ObservableOnIo<T> implements ObservableOnSubscribe<T>{
 

@@ -1,6 +1,7 @@
 package rx;
 
 import rx.thread.ObservableOnIo;
+import rx.thread.ObservableOnMain;
 
 /**
  * @ClassName: Observable
@@ -42,13 +43,12 @@ public class Observable<T> {
         observableOnSubscribe.subscribe(observer);
     }
 
-//    public Observable<T> subscribeOn(){
-//        return new Observable<>();
-//    }
-
     public Observable<T> observableOn() {
         return create(new ObservableOnIo<T>(observableOnSubscribe));
     }
 
+    public Observable<T> subscribeOn(){
+        return create(new ObservableOnMain<T>(observableOnSubscribe));
+    }
 
 }

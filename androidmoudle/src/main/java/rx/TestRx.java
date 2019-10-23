@@ -23,6 +23,7 @@ public class TestRx {
                     }
                 })
                 .observableOn()
+                .subscribeOn()
                 .subscribe(new Observer<Integer>() {
                     //订阅的时候最终 ObservableOnIo->subscribe 中的线程池中的Run方法中的代码
                     @Override
