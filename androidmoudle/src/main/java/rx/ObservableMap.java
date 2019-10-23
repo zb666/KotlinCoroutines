@@ -19,7 +19,6 @@ public class ObservableMap<T, R> implements ObservableOnSubscribe<R> {
     public ObservableMap(
             ObservableOnSubscribe<T> observable,
             Function<? super T, ? extends R> function) {
-
         this.source = observable;
         this.function = function;
     }
@@ -32,6 +31,7 @@ public class ObservableMap<T, R> implements ObservableOnSubscribe<R> {
         source.subscribe(observerMap);
     }
 
+    //因为source需要传递Observer的实现类
     class MapObserver<T> implements Observer<T> {
 
         //控制下一层

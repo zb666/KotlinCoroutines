@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.util.Timer;
 
+import rx.thread.ObservableOnIo;
+
 /**
  * @ClassName: TestRx
  * @Description:
@@ -19,29 +21,32 @@ public class TestRx {
                     public Integer apply(String result) {
                         return result.hashCode();
                     }
-                }).subscribe(new Observer<Integer>() {
-            @Override
-            public void onNext(Integer result) {
-                String a = new String("111");
-                boolean resultAAA = (a.equals("111"));
-                System.out.println("MapResult:" + result+" 常亮池: "+resultAAA);
-            }
+                })
+                .observableOn()
+                .subscribe(new Observer<Integer>() {
+                    //订阅的时候最终 ObservableOnIo->subscribe 中的线程池中的Run方法中的代码
+                    @Override
+                    public void onNext(Integer result) {
+                        String a = new String("111");
+                        boolean resultAAA = (a.equals("111"));
+                        System.out.println("MapResult:" + Thread.currentThread().getName() + result + " 常量池: " + resultAAA);
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
+                    }
 
-            @Override
-            public void onError() {
+                    @Override
+                    public void onError() {
 
-            }
+                    }
 
-            @Override
-            public void onSubscribe() {
+                    @Override
+                    public void onSubscribe() {
 
-            }
-        });
+                    }
+                });
     }
 
 

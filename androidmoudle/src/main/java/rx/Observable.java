@@ -1,5 +1,7 @@
 package rx;
 
+import rx.thread.ObservableOnIo;
+
 /**
  * @ClassName: Observable
  * @Description:
@@ -38,6 +40,14 @@ public class Observable<T> {
 
     public void subscribe(Observer<T> observer) {
         observableOnSubscribe.subscribe(observer);
+    }
+
+//    public Observable<T> subscribeOn(){
+//        return new Observable<>();
+//    }
+
+    public Observable<T> observableOn() {
+        return create(new ObservableOnIo<T>(observableOnSubscribe));
     }
 
 
