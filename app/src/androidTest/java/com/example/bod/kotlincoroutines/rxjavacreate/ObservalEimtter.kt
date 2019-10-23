@@ -8,6 +8,7 @@ package com.example.bod.kotlincoroutines.rxjavacreate
  */
 interface ObservalEimtter<T> {
 
+    //super T ->写入
     fun onNextt(result:T)
 
     fun onError()

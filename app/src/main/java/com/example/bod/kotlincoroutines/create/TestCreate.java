@@ -12,26 +12,26 @@ import timber.log.Timber;
 public class TestCreate {
 
     void main(){
-       Observable.create(new NewObserverOnSubscribe<String>() {
-           @Override
-           public void subscribe(@NotNull Observer<String> observer) {
-               observer.onNext("123456");
-           }
-       }).delegateSubscribe(new Observer<String>() {
-           @Override
-           public void onNext(String s) {
-               Timber.d("OnNext:"+s);
-           }
-
-           @Override
-           public void onError() {
-
-           }
-
-           @Override
-           public void onCompleted() {
-
-           }
-       });
+//       Observable.create(new NewObserverOnSubscribe<String>() {
+//           @Override
+//           public void subscribe(@NotNull Observer<String> observer) {
+//               observer.onNext("123456");
+//           }
+//       }).delegateSubscribe(new Observer<String>() {
+//           @Override
+//           public void onNext(String s) {
+//               Timber.d("OnNext:"+s);
+//           }
+//
+//           @Override
+//           public void onError() {
+//
+//           }
+//
+//           @Override
+//           public void onCompleted() {
+//
+//           }
+//       });
     }
 }

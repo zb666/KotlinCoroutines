@@ -1,0 +1,22 @@
+error
+max 128 下游来不及消费的时候放入到缓冲区。如果池子，满了，就会抛出异常
+
+buffer
+下游阻塞，放到缓冲区，等待下游来处理
+
+//Rxjava just操作符
+
+//订阅
+super 写入模式
+extends 读取模式
+
+//subscribe()-> Observable.Emitter三个方法中的其中一个方法
+
+create和just
+create是自己去发射的,just操作符是内部去发射的
+
+map只管上一层的类型，把上一层类型转化成新的类型给下一层
+
+
+
+

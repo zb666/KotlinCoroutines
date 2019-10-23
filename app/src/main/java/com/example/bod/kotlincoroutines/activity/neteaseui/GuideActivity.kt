@@ -58,7 +58,6 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
     }
 
     override fun initView() {
-
         //new A().print()
         //new AA(A()) print()-> a.print()
         Observable.create(object : NewObserverOnSubscribe<String> {

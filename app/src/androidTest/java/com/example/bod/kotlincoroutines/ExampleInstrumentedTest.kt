@@ -1,6 +1,8 @@
 package com.example.bod.kotlincoroutines
 
+import com.example.bod.kotlincoroutines.rxjavacreate.Observable
 import com.example.bod.kotlincoroutines.rxjavacreate.ObservalEimtter
+import com.example.bod.kotlincoroutines.rxjavacreate.Observer
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
 
@@ -69,12 +71,14 @@ class ExampleInstrumentedTest {
     fun testEmitter() {
         //静态方法->创建一个新的具有发送数据能力的Observer
         //->构造方法里面初始化发射器 ->保存在成员变量中
-        //
-        com.example.bod.kotlincoroutines.rxjavacreate.Observable.create(
+
+        com.example.bod.kotlincoroutines.rxjavacreate.Observable. create(
                 com.example.bod.kotlincoroutines.rxjavacreate.ObservableOnSubscribe<String> {
                     emitterObserver ->
+                    //Observable->observalEimtter->onNext()
                     emitterObserver?.onNext("发送数据")
                 })
+                //.map
                 .subscribe(object : com.example.bod.kotlincoroutines.rxjavacreate.Observer<String> {
 
                     override fun onSubscribe() {
@@ -92,5 +96,24 @@ class ExampleInstrumentedTest {
 
                 })
 
+
+        Observable.just("just:111","just:222")
+                .subscribe(object :Observer<String>{
+                    override fun onSubscribe() {
+
+                    }
+
+                    override fun onNext(result: String?) {
+                        Timber.d("onNext:$result")
+                    }
+
+                    override fun onError(throwable: Throwable?) {
+                    }
+
+                    override fun onComplete() {
+                    }
+                })
+
     }
+
 }
