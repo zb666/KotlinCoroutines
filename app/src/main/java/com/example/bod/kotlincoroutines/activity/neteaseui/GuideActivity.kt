@@ -20,7 +20,11 @@ import com.example.bod.kotlincoroutines.create.Observer
 import com.example.bod.kotlincoroutines.sound.TestSoundPool
 import kotlinx.android.synthetic.main.activity_guide.*
 import kotlinx.android.synthetic.main.layout_train_plan.*
+import okhttp3.OkHttpClient
 import timber.log.Timber
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 class GuideActivity : BaseUiActivity(), View.OnClickListener {
@@ -60,6 +64,11 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
     override fun initView() {
         //new A().print()
         //new AA(A()) print()-> a.print()
+
+        val indexOf = listOf(Data(name = "111"), Data(name = "222")).indexOf(Data(name = "222"))
+
+        Timber.d("Index:$indexOf")
+
         Observable.create(object : NewObserverOnSubscribe<String> {
             override fun subscribe(observer: Observer<String>) {
                 observer.onNext("123456")  //就是这种方式骚一点而已
@@ -200,5 +209,9 @@ class GuideActivity : BaseUiActivity(), View.OnClickListener {
         super.onRestart()
         Timber.d("OnResStart invoked")
     }
+
+
+
+    class Data(var name:String)
 
 }

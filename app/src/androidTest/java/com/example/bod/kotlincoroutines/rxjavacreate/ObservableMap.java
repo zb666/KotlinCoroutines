@@ -11,6 +11,7 @@ import com.example.bod.kotlincoroutines.R;
 /**
  * 产生新的R类型的Observable数据
  * ObservableOnScribe() -> 订阅的时候产生新的Observable()
+ *
  * @param <T> source
  * @param <R> newSource
  */
@@ -36,10 +37,12 @@ public class ObservableMap<T, R> implements ObservableOnSubscribe<R> {
         observableEmitter = sourceObserverEmitter;
         //Onserver<T> -> Map Observer-> T apply R->Observer<R>
         //onNext实际调用的是MapObserver中的onNext()方法
-        MapObserver<T> tMapObserver = new MapObserver<>(sourceOrigin,observableEmitter,sourceFunction);
+        MapObserver<T> tMapObserver = new MapObserver<>(sourceOrigin, observableEmitter, sourceFunction);
         sourceOrigin.subscribe(tMapObserver);
     }
 
+    //新的Observable具有以下的能力
+    //上游的数据  变化  能继续发射数据
     class MapObserver<T> implements Observer<T> {
 
         private ObservableOnSubscribe<T> sourceOrigin;
@@ -58,12 +61,15 @@ public class ObservableMap<T, R> implements ObservableOnSubscribe<R> {
 
         @Override
         public void onSubscribe() {
+            observableEmitter.onSubscribe();
         }
 
         @Override
         public void onNext(T result) {
-            R applResult = sourceFunction.apply(result);
-            observableEmitter.onNext(applResult);
+            //变化
+            R resultR = sourceFunction.apply(result);
+            //发射
+            observableEmitter.onNext(resultR);
         }
 
         @Override
@@ -73,7 +79,7 @@ public class ObservableMap<T, R> implements ObservableOnSubscribe<R> {
 
         @Override
         public void onComplete() {
-
+           observableEmitter.onComplete();
         }
     }
 }

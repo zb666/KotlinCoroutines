@@ -36,7 +36,57 @@ class Main2Activity : AppCompatActivity() {
                     repeatMode = RESTART
                     duration = 1500
                 }.start()
+
+        bindDataAnClick(son = Base.A){
+
+        }
     }
 
+    val data = Base.A
+
+    //绑定事件
+    fun bindDataAnClick(son: Base, data: Data? = null, clickAction: ((Int) -> Unit)? = null) {
+        //共性
+        circieProgressBar.setProgressDay(data?.name?.length ?: 0)
+        clickAction?.invoke(111)
+
+        when (son) {
+            is Base.A -> {
+
+            }
+            is Base.B -> {
+
+            }
+        }
+    }
+
+    //这个放在其他类中
+    sealed class Base {
+
+        abstract fun click()
+
+        object A : Base() {
+            override fun click() {
+//go A
+            }
+        }
+
+        object B : Base() {
+            override fun click() {
+//go B
+            }
+        }
+
+    }
+
+    data class Data(
+            val name: String
+    )
+
+    class SingleTon private constructor(){
+        companion object{
+            val instance by lazy { SingleTon }
+        }
+    }
 
 }
