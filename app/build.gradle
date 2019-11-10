@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -65,5 +65,11 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.41'
     //AndroidUtil
     implementation 'com.blankj:utilcodex:1.25.2'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.qmuiteam:qmui:1.2.0'
+    // implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.google.android.material:material:1.0.0'
 
+    implementation "androidx.room:room-ktx:2.2.1"
+    kapt "androidx.room:room-compiler:2.2.1"
 }
