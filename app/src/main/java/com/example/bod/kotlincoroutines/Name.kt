@@ -12,6 +12,6 @@ class Name  {
     companion object {
         //stash
 
-        fun getName():String = "stash test"
+        fun getName():String = "stash test aaa"
     }
 }
