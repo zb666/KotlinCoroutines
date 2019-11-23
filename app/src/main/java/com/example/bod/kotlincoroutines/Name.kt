@@ -10,6 +10,8 @@ class Name  {
     var name:String = ""
 
     companion object {
-        fun getName():String = "name"
+        //stash
+
+        fun getName():String = "stash test"
     }
 }
