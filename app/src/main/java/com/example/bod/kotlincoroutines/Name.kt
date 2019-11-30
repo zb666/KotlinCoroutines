@@ -14,4 +14,8 @@ class Name  {
 
         fun getName():String = "stash test aaa"
     }
+
+    fun a():Pair<Float,Float>{
+        return 0f to 0f
+    }
 }
