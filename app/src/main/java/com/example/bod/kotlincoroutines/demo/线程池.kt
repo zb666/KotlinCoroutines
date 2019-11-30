@@ -24,6 +24,7 @@ object 线程池 {
         Executors.newFixedThreadPool(1)
 
         //最大的线程大小是 10+3 ，核心线程数是5，15个任务提交的话 有2个会被拒绝掉
+        //超时核心线程数5个，如果线程在5秒之后还没有任务的话，5个线程就会被回收
         val threadPoolExecutor = ThreadPoolExecutor(5,10,5,TimeUnit.SECONDS,LinkedBlockingQueue<Runnable>(3), RejectedExecutionHandler { r, executor ->
             log("拒绝策略觉醒")
         })
@@ -31,9 +32,14 @@ object 线程池 {
         (1..15)
                 .forEach {
             threadPoolExecutor.submit {
-                Thread.sleep(3000L)
+                Thread.sleep(100L)
             }
         }
+
+        log(threadPoolExecutor.poolSize)
+        Thread.sleep(6000L)
+        //空闲
+        log("-"+threadPoolExecutor.maximumPoolSize+"-"+threadPoolExecutor.poolSize)
 
 //        val threadPool=ThreadPoolExecutor.AbortPolicy.
     }
