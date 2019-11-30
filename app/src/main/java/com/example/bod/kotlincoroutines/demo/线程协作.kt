@@ -9,8 +9,13 @@ import com.example.bod.kotlincoroutines.utils.log
  * @CreateDate: 2019/11/30
  */
 object 线程协作 {
+
+    //suspend和resume不正规的写法，后来JDK废弃了
+
     @JvmStatic
     fun main(args: Array<String>) {
         log("aaa")
+
+        HelloService().test()
     }
 }
