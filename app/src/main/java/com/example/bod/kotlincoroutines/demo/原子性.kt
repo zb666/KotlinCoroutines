@@ -1,5 +1,6 @@
 package com.example.bod.kotlincoroutines.demo
 
+import android.os.Message
 import android.os.SystemClock
 import com.example.bod.kotlincoroutines.utils.log
 import java.util.concurrent.atomic.AtomicInteger
@@ -9,6 +10,14 @@ import java.util.concurrent.atomic.AtomicInteger
  * @ClassName: 原子性
  * @Description:
  * @CreateDate: 2019/12/1
+ *
+ * CAS
+ * 只在方法中存在的线程私有数据
+ * int cur = 1
+ * int value = +cur
+ * i = value
+ * CAS硬件指令。java语言无法改变内存.
+ *
  */
 object 原子性 {
 
@@ -33,6 +42,7 @@ object 原子性 {
     //unsafe类 CAS compare And Swap,原值,旧的预期值,新的预期值
     //自旋
     fun add() {
+        Message.obtain()
         atomicInteger.incrementAndGet()
     }
 
