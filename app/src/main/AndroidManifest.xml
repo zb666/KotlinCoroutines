@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bod.kotlincoroutines">
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:name=".app.KotlinApp"
@@ -21,12 +21,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MotionActivity" />
+        <activity android:name=".activity.IOActivity" />
+        <activity android:name=".activity.IOActivityDemo" />
+
 
         <provider
-            android:multiprocess="true"
-            android:authorities="${applicationId}.cp"
-            android:name=".InitContentProvider"
-            android:exported="false"/>
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
     </application>
 

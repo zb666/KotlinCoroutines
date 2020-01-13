@@ -2,6 +2,7 @@ package com.example.bod.kotlincoroutines.demo.sync
 
 import com.example.bod.kotlincoroutines.utils.log
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.locks.ReentrantLock
 
 /**
  *
@@ -34,6 +35,7 @@ fun reTest() {
     log("start log")
     if (atomic.incrementAndGet()==1) {
         reTest()
+
     }
     log("end log")
 }
