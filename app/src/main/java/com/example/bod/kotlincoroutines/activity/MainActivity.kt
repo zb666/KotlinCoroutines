@@ -43,6 +43,10 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        "".runCatching {
+
+        }
+
         myObServer = MyObServer().apply {
             lifecycle.addObserver(this)
         }

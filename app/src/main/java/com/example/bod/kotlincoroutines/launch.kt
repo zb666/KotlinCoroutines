@@ -9,22 +9,22 @@ import kotlinx.coroutines.flow.flow
 import org.intellij.lang.annotations.Flow
 
 fun main() {
-  GlobalScope.launch {
-   log("Global log")
-  }
+    GlobalScope.launch {
+        log("Global log")
+    }
 
-  runBlocking {
-      delay(1000)
-      log("Running Block")
-  }
+    runBlocking {
+        delay(1000)
+        log("Running Block")
+    }
 
     val demo = Demo()
-    val f:(String)->Unit = demo::printDemo
+    val f: (String) -> Unit = demo::printDemo
     f.invoke("DemoStart")
 
 
     val ints = flow<Int> {
-        for (i in 1..10){
+        for (i in 1..10) {
             delay(100)
             emit(i)
         }
@@ -42,16 +42,16 @@ fun main() {
 }
 
 
-class Demo{
+class Demo {
 
-    fun printDemo(str:String){
+    fun printDemo(str: String) {
         log(str)
     }
 }
 
 //var定义了变量 这个变量就会被保存下来
 //如果仅写了x:Int 就不能处理
-class SimpleClass :IKotlin{
+class SimpleClass : IKotlin {
     override val simple: Int
         get() = 123
 
@@ -62,10 +62,18 @@ class SimpleClass :IKotlin{
 }
 
 
-interface IKotlin{
-    fun method(){
+fun a(): String {
+    return "1"
+}
+
+fun String.type():Int{
+    return 1
+}
+
+interface IKotlin {
+    fun method() {
 
     }
 
-    val simple:Int
+    val simple: Int
 }

@@ -43,14 +43,14 @@ class IOActivityDemo : BaseActivity() {
         button.setOnClickListener {
             launch {
                 DownLoadManager.downLoad("https://kotlinlang.org/docs/kotlin-docs.pdf", "Kotlin_doc.pdf")
-                        .flowOn(Dispatchers.IO)
+                        .flowOn(Dispatchers.IO) //冷流
                         .collect {
                             when (it) {
                                 is DownLoadManager.DownLoadStatus.DONE -> {
                                     Intent(Intent.ACTION_VIEW).apply {
                                         setDataAndType(
                                                 FileProvider.getUriForFile(
-                                                this@IOActivityDemo, "${packageName}.provider", it.file),
+                                                        this@IOActivityDemo, "${packageName}.provider", it.file),
                                                 "application/pdf"
                                         )
                                         flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_GRANT_READ_URI_PERMISSION

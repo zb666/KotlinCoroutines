@@ -32,11 +32,10 @@ object DownLoadManager {
             val request = Request.Builder().url(url).get().build()
             val response = okHttpClient.newCall(request).execute()
             if (response.isSuccessful){
-                response.body()!!.let {body->
-                    val fileOutputStream = FileOutputStream(downFile)
-                    fileOutputStream.use {output->
-                        body.byteStream().use {input->
-                            input.copyTo(output)//copy value to Target Value
+                response.body()!!.let {
+                    it.byteStream().use {body->
+                        downFile.outputStream().use {output->
+                            body.copyTo(output)
                         }
                     }
                     emit(DownLoadStatus.DONE(downFile))
