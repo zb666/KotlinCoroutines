@@ -5,20 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.graphics.withTranslation
 import androidx.core.net.toUri
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
-import androidx.core.view.setPadding
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.ScreenUtils
-import com.example.bod.kotlincoroutines.LogUtils
-import com.example.bod.kotlincoroutines.Name
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.User
 import com.example.bod.kotlincoroutines.by.BaseImpl
@@ -26,11 +17,7 @@ import com.example.bod.kotlincoroutines.by.Derived
 import com.example.bod.kotlincoroutines.by.Example
 import com.example.bod.kotlincoroutines.lifecycle.MyObServer
 import com.example.bod.kotlincoroutines.paging.ConvertAdapter
-import com.example.bod.kotlincoroutines.utils.TestUtils
-import com.example.bod.kotlincoroutines.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 
 class MainActivity : BaseActivity() {
@@ -42,6 +29,9 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        startActivity(Intent(this,OkHttpMainActivity::class.java))
+
 
         "".runCatching {
 
