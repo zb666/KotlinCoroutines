@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
         <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.OkHttpMainActivity">
+        <activity android:name=".anim.AnimActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +26,7 @@
         <activity android:name=".activity.MotionActivity" />
         <activity android:name=".activity.IOActivity" />
         <activity android:name=".activity.IOActivityDemo" />
+        <activity android:name=".activity.OkHttpMainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
