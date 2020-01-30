@@ -1,11 +1,10 @@
 package com.example.bod.kotlincoroutines.structure
 
-import com.example.bod.kotlincoroutines.exception.OutException
-import com.example.bod.kotlincoroutines.structure.linked.LNode
+import android.annotation.SuppressLint
 import com.example.bod.kotlincoroutines.structure.linked.NodeList
 import com.example.bod.kotlincoroutines.utils.log
-import timber.log.Timber
 import java.util.*
+import java.util.concurrent.*
 
 /**
  *
@@ -13,6 +12,7 @@ import java.util.*
  * @Description:
  * @CreateDate: 2020/1/29
  */
+@SuppressLint("NewApi")
 fun main() {
     val nodeList = NodeList()
 
@@ -20,8 +20,48 @@ fun main() {
     nodeList.addData(2)
     nodeList.addData(3)
 
-
     nodeList.reverse()
     nodeList.showNodeList()
+
+    val linkedBlockingDeque = LinkedBlockingDeque<String>()
+    linkedBlockingDeque.add("1")
+    linkedBlockingDeque.add("1")
+    linkedBlockingDeque.add("1")
+    linkedBlockingDeque.pop()
+    linkedBlockingDeque.pollLast()
+
+    val priorityQueue =
+        PriorityQueue<Int>()
+
+    priorityQueue.add(1)
+    priorityQueue.add(11)
+    priorityQueue.add(5)
+    priorityQueue.add(6)
+
+    priorityQueue.forEach {
+        log("$it")
+    }
+
+
+    val poolExecutor = ThreadPoolExecutor(
+            3,
+            6,
+            10,
+            TimeUnit.SECONDS,
+            LinkedBlockingQueue<Runnable>(10))
+
+    (1..20).forEach {
+        poolExecutor.submit(MyRunnable(it))
+    }
+
+    poolExecutor.shutdown()
+
+}
+
+class MyRunnable(private var index: Int) :Runnable{
+    override fun run() {
+        Thread.sleep(500)
+        log("任务: $index")
+    }
 
 }
