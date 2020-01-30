@@ -42,7 +42,6 @@ fun main() {
         log("$it")
     }
 
-
     val poolExecutor = ThreadPoolExecutor(
             3,
             6,
@@ -51,10 +50,21 @@ fun main() {
             LinkedBlockingQueue<Runnable>(10))
 
     (1..20).forEach {
-        poolExecutor.submit(MyRunnable(it))
+//        poolExecutor.submit(MyRunnable(it))
     }
 
     poolExecutor.shutdown()
+
+    val mStack = Stack<String>()
+    mStack.apply {
+        add("1")
+        add("2")
+        add("4")
+        add("3")
+        add("5")
+    }
+    val topElement = mStack.pop()
+    log("StackValue: "+topElement)
 
 }
 
