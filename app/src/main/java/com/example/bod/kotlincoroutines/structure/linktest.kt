@@ -50,7 +50,7 @@ fun main() {
             LinkedBlockingQueue<Runnable>(10))
 
     (1..20).forEach {
-//        poolExecutor.submit(MyRunnable(it))
+        poolExecutor.submit(MyRunnable(it))
     }
 
     poolExecutor.shutdown()
@@ -66,6 +66,10 @@ fun main() {
     val topElement = mStack.pop()
     log("StackValue: "+topElement)
 
+
+    ArrayDeque<String>().apply {
+        add("1")
+    }
 }
 
 class MyRunnable(private var index: Int) :Runnable{
