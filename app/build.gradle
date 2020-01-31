@@ -70,3 +70,10 @@ dependencies {
     implementation 'org.ow2.asm:asm:6.0'
     implementation 'org.ow2.asm:asm-commons:6.0'
 }
+
+task helloWorld(group:"hello"){
+    print("Hello")
+    doLast{
+        print("World")
+    }
+}
