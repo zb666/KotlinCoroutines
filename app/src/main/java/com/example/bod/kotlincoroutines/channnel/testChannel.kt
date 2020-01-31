@@ -7,6 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.broadcast
 import kotlinx.coroutines.channels.receiveOrNull
 import java.nio.file.Files.list
+import kotlin.coroutines.experimental.coroutineContext
 
 /**
  *
@@ -67,4 +68,14 @@ suspend fun basics() {
 
     producer.join()
     consumer.join()
+}
+
+
+suspend fun test() = suspendCancellableCoroutine<Int> {  }
+
+suspend fun withTest() = withContext(Dispatchers.IO){
+    "dsfsdfd"
+    123456
+    123
+    "sdfdsf"
 }

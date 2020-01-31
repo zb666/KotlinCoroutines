@@ -16,6 +16,10 @@ import java.util.concurrent.*
 fun main() {
     val nodeList = NodeList()
 
+    LinkedList<String>().forEach {
+
+    }
+
     nodeList.addData(1)
     nodeList.addData(2)
     nodeList.addData(3)

@@ -9,8 +9,6 @@ import com.example.bod.kotlincoroutines.utils.log
  *
  */
 fun main(){
- val mMap = mapOf("1" to 123)
-    mMap.get("1").run {
-        log(this)
-    }
+    val threadLocal = ThreadLocal<String>()
+
 }

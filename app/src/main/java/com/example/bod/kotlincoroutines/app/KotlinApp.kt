@@ -1,6 +1,7 @@
 package com.example.bod.kotlincoroutines.app
 
 import android.app.Application
+import android.content.Context
 import com.blankj.utilcode.util.Utils
 import timber.log.Timber
 
@@ -11,4 +12,6 @@ class KotlinApp:Application() {
         Timber.plant(Timber.DebugTree())
         Utils.init(this)
     }
+
+
 }
