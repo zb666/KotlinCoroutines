@@ -7,7 +7,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import org.intellij.lang.annotations.Flow
+import retrofit2.Retrofit
+import retrofit2.http.GET
 
+@GET
 fun main() {
     GlobalScope.launch {
         log("Global log")
