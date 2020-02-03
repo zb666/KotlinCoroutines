@@ -4,12 +4,14 @@ import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ViewAnimator
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.activity.BaseActivity
+import com.example.bod.kotlincoroutines.activity.ButterKnifeActivity
 import kotlinx.android.synthetic.main.activity_anim.*
 import timber.log.Timber
 
@@ -26,6 +28,7 @@ class AnimActivity:BaseActivity() {
         setContentView(R.layout.activity_anim)
 
         tv_context.setOnClickListener {
+            startActivity(Intent(this,ButterKnifeActivity::class.java))
            it.animate().alpha(0.5f)
                    .apply {
                        duration = 2500

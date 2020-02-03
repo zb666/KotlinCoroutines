@@ -27,6 +27,7 @@
         <activity android:name=".activity.IOActivity" />
         <activity android:name=".activity.IOActivityDemo" />
         <activity android:name=".activity.OkHttpMainActivity" />
+        <activity android:name=".activity.ButterKnifeActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

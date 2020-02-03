@@ -69,6 +69,12 @@ dependencies {
     implementation 'com.blankj:utilcodex:1.25.2'
     implementation 'org.ow2.asm:asm:6.0'
     implementation 'org.ow2.asm:asm-commons:6.0'
+//    implementation("com.google.guava:guava:28.2-jre")
+
+    annotationProcessor project(path: ':compiler')
+    implementation project(path: ':library')
+    implementation project(path: ':annotation')
+
 }
 
 task helloWorld(group:"hello"){
