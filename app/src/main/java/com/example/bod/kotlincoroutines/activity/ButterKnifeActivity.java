@@ -17,6 +17,9 @@ import com.example.library.ButterKnife;
  */
 public class ButterKnifeActivity extends AppCompatActivity {
 
+    //被注解处理器扫描到 然后采集属性
+    //value = activity.findViewById(R.id.tvName)
+    //assignment tvName = value
     @BindView(R.id.tvName)
     TextView tvName;
 
