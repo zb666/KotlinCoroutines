@@ -1,1 +1,1 @@
-include ':app', ':datastructure', ':compiler', ':annotation', ':library'
+include ':app', ':datastructure', ':compiler', ':annotation', ':library', ':okhttp_master'
