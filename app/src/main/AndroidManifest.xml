@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MMKVActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".anim.AnimActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

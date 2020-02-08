@@ -12,6 +12,7 @@ import android.widget.ViewAnimator
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.activity.BaseActivity
 import com.example.bod.kotlincoroutines.activity.ButterKnifeActivity
+import com.example.bod.kotlincoroutines.activity.MMKVActivity
 import kotlinx.android.synthetic.main.activity_anim.*
 import timber.log.Timber
 
@@ -28,7 +29,7 @@ class AnimActivity:BaseActivity() {
         setContentView(R.layout.activity_anim)
 
         tv_context.setOnClickListener {
-            startActivity(Intent(this,ButterKnifeActivity::class.java))
+            startActivity(Intent(this,MMKVActivity::class.java))
            it.animate().alpha(0.5f)
                    .apply {
                        duration = 2500

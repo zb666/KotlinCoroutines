@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.bod.kotlincoroutines"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -70,16 +70,18 @@ dependencies {
     implementation 'org.ow2.asm:asm:6.0'
     implementation 'org.ow2.asm:asm-commons:6.0'
 //    implementation("com.google.guava:guava:28.2-jre")
+    implementation 'com.tencent:mmkv-static:1.0.24'
 
     annotationProcessor project(path: ':compiler')
     implementation project(path: ':library')
     implementation project(path: ':annotation')
+    implementation project(path: ':glide')
 
 }
 
-task helloWorld(group:"hello"){
+task helloWorld(group: "hello") {
     print("Hello")
-    doLast{
+    doLast {
         print("World")
     }
 }

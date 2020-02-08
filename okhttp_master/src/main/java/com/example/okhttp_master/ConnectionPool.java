@@ -1,8 +1,10 @@
 package com.example.okhttp_master;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
@@ -15,6 +17,9 @@ import java.util.concurrent.TimeUnit;
  * @CreateDate: 2020/2/4
  */
 public class ConnectionPool {
+
+
+    private List<> mList = new  ArrayList<String>();
 
     private final String TAG = ConnectionPool.class.getSimpleName();
 
