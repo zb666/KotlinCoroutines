@@ -10,5 +10,7 @@ class GlideTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_glide_test)
 
+        val iFactory:IFactory = BobCallFactory().create()
+        iFactory.requestResult()
     }
 }
