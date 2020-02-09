@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".activity.MMKVActivity">
 
+    <TextView
+        android:id="@+id/tv_test"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="点击进行加载测试"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
