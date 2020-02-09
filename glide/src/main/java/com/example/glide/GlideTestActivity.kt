@@ -12,5 +12,7 @@ class GlideTestActivity : AppCompatActivity() {
 
         val iFactory:IFactory = BobCallFactory().create()
         iFactory.requestResult()
+
+        Runtime.getRuntime().gc()
     }
 }

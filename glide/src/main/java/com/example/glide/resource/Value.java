@@ -99,7 +99,7 @@ public class Value {
         if (mBitmap != null && mBitmap.isRecycled()) {
             return;
         }
-        if (mBitmap!=null) {
+        if (mBitmap != null) {
             mBitmap.recycle();
         }
     }

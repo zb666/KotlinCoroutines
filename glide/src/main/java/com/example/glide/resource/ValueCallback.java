@@ -9,6 +9,6 @@ public interface ValueCallback {
     /**
      * 监听的方法
      */
-    public void valueNonUserListener(String key,Value value);
+     void valueNonUserListener(String key,Value value);
 
 }
