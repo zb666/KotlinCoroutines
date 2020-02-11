@@ -4,16 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MMKVActivity">
-
-    <TextView
-        android:id="@+id/tv_test"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="点击进行加载测试"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+    tools:context=".activity.GlideErrorActivity">
 
     <ImageView
         android:id="@+id/iv_error"
