@@ -3,7 +3,6 @@ package com.example.bod.kotlincoroutines.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bod.kotlincoroutines.R
-import com.example.glide.Glide
 
 class GlideErrorActivity : AppCompatActivity() {
 
