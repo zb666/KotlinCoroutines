@@ -58,10 +58,7 @@ class SimpleClass : IKotlin {
     override val simple: Int
         get() = 123
 
-
-    init {
-
-    }
+    init { }
 }
 
 

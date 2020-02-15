@@ -33,6 +33,5 @@ public class MyClassLoader extends ClassLoader {
             ex.printStackTrace();
         }
         return  defineClass(className,classBytes,0,classBytes.length);
-
     }
 }
