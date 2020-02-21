@@ -5,10 +5,17 @@
 
     <TextView
         android:id="@+id/tv_context"
-        android:background="@color/colorAccent"
         android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:text="dsfksbdhjfbsdhjgbfdhjgbfdj"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/tv_ioc"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="IOC依赖反转，代理类实现\nView.OnClickListener接口的功能"
         android:layout_width="wrap_content"
         android:layout_height="100dp" />
 

@@ -7,9 +7,13 @@ import android.graphics.Canvas
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.core.graphics.withTranslation
 import androidx.core.net.toUri
 import com.blankj.utilcode.util.ScreenUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomViewTarget
+import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.example.bod.kotlincoroutines.R
 import com.example.bod.kotlincoroutines.User
 import com.example.bod.kotlincoroutines.by.BaseImpl
@@ -88,8 +92,8 @@ class MainActivity : BaseActivity() {
 
         tvSync.setOnClickListener {
             startActivity(Intent(it.context, MotionActivity::class.java))
-
         }
+ 
 
     }
 

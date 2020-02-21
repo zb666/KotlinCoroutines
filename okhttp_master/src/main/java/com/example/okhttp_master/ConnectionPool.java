@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class ConnectionPool {
 
 
-    private List<> mList = new  ArrayList<String>();
+    private List mList = new  ArrayList<String>();
 
     private final String TAG = ConnectionPool.class.getSimpleName();
 
