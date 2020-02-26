@@ -19,4 +19,18 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp" />
 
+    <TextView
+        android:id="@+id/tv_remote_service"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="远程的Service"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+    <TextView
+        android:id="@+id/tv_unbind_service"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="解绑服务"
+        android:layout_width="200dp"
+        android:layout_height="100dp" />
 </LinearLayout>

@@ -14,7 +14,9 @@ import com.example.bod.kotlincoroutines.structure.iocdemo.InjectUtil;
 import com.example.bod.kotlincoroutines.structure.iocdemo.OnClick;
 import com.example.bod.kotlincoroutines.structure.iocdemo.OnLongClick;
 import com.example.bod.kotlincoroutines.structure.iocdemo.ViewInject;
+import com.example.bod.kotlincoroutines.utils.SuspensionWindowUtil;
 
+import kotlinx.coroutines.GlobalScope;
 import timber.log.Timber;
 
 /**
@@ -34,13 +36,20 @@ public class IocActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     @OnClick({R.id.tvClick,R.id.tvClick2})
     public void onBobClicked(View view){
         Timber.d("BobPerformClick: onClickInvoked()"+mTVClick.getText());
+        new FlowActivity();
+        new SuspensionWindowUtil(this).showSuspensionView();
     }
-
-
 
 }
